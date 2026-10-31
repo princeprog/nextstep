@@ -64,6 +64,10 @@ the results in the README. It is a lab check, not a CI gate.
 Build with `pnpm build`, not `next build` directly: it also moves route prefetch files that Next.js 16.4 misplaces on
 Windows.
 
+gitleaks scans the full git history, so never commit key- or token-like strings, even as test data. Run
+`gitleaks git . --redact` before pushing. Deployment, rollback, and the steps for publishing the approved privacy policy
+and terms are in the README's "Operations runbooks".
+
 ## Don'ts
 
 - No deployment or production hosting changes without an explicit request from the owner.

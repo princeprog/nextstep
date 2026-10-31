@@ -128,6 +128,31 @@ GitHub Actions runs two workflows with read-only access to the repository:
 Dependabot proposes npm and GitHub Actions updates weekly and waits a week after each npm release. Actions are pinned to
 full commit SHAs with the version in a trailing comment; pin new ones the same way.
 
+## Operations runbooks
+
+**Deploy**
+
+1. Build with the production values: `SITE_ENV=production`, `SITE_PUBLIC_ORIGIN` (the website's https origin),
+   `PUBLIC_APP_URL` (`https://<app origin>/register`), and `PUBLIC_DEMO_URL` (`https://<app origin>/demo`), then `pnpm build`.
+2. Upload `out/` to any static host. Serve `404.html` for missing paths and redirect paths without a trailing slash to
+   the slash form, as `pnpm start` does.
+3. Set these response headers at the host, since a static export can't send its own:
+   `Strict-Transport-Security: max-age=31536000; includeSubDomains`, `X-Content-Type-Options: nosniff`,
+   `Referrer-Policy: strict-origin-when-cross-origin`, and `X-Frame-Options: DENY`.
+4. Check the home, features, privacy, and terms pages, `/sitemap.xml`, and `/robots.txt` on the real origin, and run
+   `pnpm perf` with `SITE_PUBLIC_ORIGIN` set to compare with the numbers above.
+
+**Roll back**: upload the previous build of `out/`. The site keeps no state.
+
+**Publish the privacy policy and terms** once the owner approves them:
+
+1. Fill in the open choices (hosting provider and data location, email provider, backup and log retention, error
+   monitoring), and remove the "to be decided" markers and the open-decisions box.
+2. Replace the draft badge with the date the policy takes effect, and update "Last updated".
+3. Add `/privacy/` and `/terms/` to `INDEXABLE_ROUTES` in `src/site-config.ts`, and update the noindex and sitemap
+   expectations in `scripts/check-static.mjs`.
+4. Run every check in "Commands", then deploy.
+
 ## Project context (Obsidian)
 
 Product requirements, rules, and decisions live in the owner's local Obsidian vault. **These links point to a local vault on the owner's machine. They won't open for anyone without access to it**; on this machine, an agent can read the Markdown files directly from the absolute paths.
