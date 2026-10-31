@@ -10,6 +10,13 @@ updates:
     groups:
       npm-minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # ESLint 10 is outside the peer range of the plugins bundled with eslint-config-next 16.4.
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
+      # The site builds on Node 24; its types follow the runtime, not the newest Node release.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: github-actions
     directory: /
