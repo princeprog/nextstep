@@ -1,0 +1,145 @@
+.page {
+  padding-block: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 44rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.title {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+}
+
+.lede {
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.featureTitle {
+  font-size: 1.6rem;
+}
+
+.feature p,
+.feature li {
+  color: var(--ink-soft);
+}
+
+.feature ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-left: 1.1rem;
+}
+
+.later {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+}
+
+.later h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.8rem;
+}
+
+.later p {
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+
+.later ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 2rem;
+  padding-left: 1.1rem;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.cta h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.article {
+  max-width: 44rem;
+}
+
+.article h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.75rem;
+}
+
+.article p,
+.article li {
+  color: var(--ink-soft);
+}
+
+.article p + p {
+  margin-top: 0.85rem;
+}
+
+.article ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.status {
+  align-self: flex-start;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--amber-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  min-height: 50vh;
+  justify-content: center;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 48rem) {
+  .grid,
+  .later ul {
+    grid-template-columns: 1fr;
+  }
+}
+
