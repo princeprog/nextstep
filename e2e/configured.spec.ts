@@ -29,12 +29,22 @@ test("calls to action link to the configured app and demo", async ({ page }) => 
   await expect(page.getByRole("banner").getByRole("link", { name: "Try the demo" })).toHaveAttribute("href", DEMO_URL)
 })
 
-test("the header demo button keeps its compact size, and pages fit 320 px", async ({ page }) => {
+test("the header demo button keeps its compact style, and pages fit 320 px", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 800 })
   await page.goto("/")
-  // One line at the compact header size. Global button styles loading after the header's styles made it 48 px or taller.
-  const button = await page.getByRole("banner").getByRole("link", { name: "Try the demo" }).boundingBox()
-  expect(button?.height).toBeLessThanOrEqual(44)
+  // The header's compact button styles must win over the global .button styles, which once loaded after them and made
+  // the button full size. Compare computed styles: the rendered height also depends on how each platform rasterizes
+  // the font, which decides whether the label wraps at narrow widths.
+  const style = await page
+    .getByRole("banner")
+    .getByRole("link", { name: "Try the demo" })
+    .evaluate((element) => {
+      const computed = getComputedStyle(element)
+      const root = parseFloat(getComputedStyle(document.documentElement).fontSize)
+      return { fontSize: parseFloat(computed.fontSize) / root, minHeight: parseFloat(computed.minHeight) / root }
+    })
+  expect(style.fontSize).toBeCloseTo(0.9, 2)
+  expect(style.minHeight).toBeCloseTo(2.5, 2)
   await page.setViewportSize({ width: 320, height: 740 })
   for (const path of PATHS) {
     await page.goto(path)
