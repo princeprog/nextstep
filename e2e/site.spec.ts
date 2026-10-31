@@ -34,6 +34,20 @@ test("content and navigation work with JavaScript disabled", async ({ browser })
   await context.close()
 })
 
+test("pages load without console errors or failed requests, including the router's prefetches", async ({ page }) => {
+  const problems: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") problems.push(message.text())
+  })
+  page.on("response", (response) => {
+    if (response.status() >= 400) problems.push(response.status() + " " + response.url())
+  })
+  for (const { path } of PAGES) {
+    await page.goto(path, { waitUntil: "networkidle" })
+  }
+  expect(problems).toEqual([])
+})
+
 test("pages pass automated accessibility checks", async ({ page }) => {
   for (const path of ["/", "/features/", "/privacy/", "/no-such-page/"]) {
     await page.goto(path)

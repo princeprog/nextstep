@@ -12,7 +12,7 @@ const check = (condition, message) => {
 }
 
 function build(label, env) {
-  const result = spawnSync("pnpm exec next build", {
+  const result = spawnSync("pnpm run build", {
     env: { ...process.env, SITE_ENV: "", SITE_PUBLIC_ORIGIN: "", PUBLIC_APP_URL: "", PUBLIC_DEMO_URL: "", ...env },
     encoding: "utf8",
     shell: true,
@@ -86,6 +86,8 @@ if (production.status === 0) {
     check(expected.indexable ? /^index/.test(robots) : /noindex/.test(robots), file + " robots should be " + (expected.indexable ? "indexable" : "noindex") + " (found " + robots + ")")
     check(property(html, "og:image") === ORIGIN + "/og.png", file + " should have an absolute og:image on the canonical origin")
     check(/<main[^>]*id="main"/.test(html), file + " should have a main landmark for the skip link")
+    // Styles are inlined (experimental.inlineCss in next.config.ts) so first paint does not wait on stylesheet requests.
+    check(!/<link[^>]+rel="stylesheet"/.test(html) && /<style/.test(html), file + " should inline its CSS instead of linking render-blocking stylesheets")
   }
   const home = read("index.html")
   check(home.includes("Keep your job search"), "Home hero text should be in the static HTML")
@@ -99,6 +101,12 @@ if (production.status === 0) {
   const robots = read("robots.txt")
   check(robots.includes("Sitemap: " + ORIGIN + "/sitemap.xml"), "robots.txt should point to the sitemap")
   check(/Allow: \//.test(robots) && !/Disallow: \/\s*$/m.test(robots), "robots.txt should allow crawling")
+
+  // The client router prefetches /features/__next.features.__PAGE__.txt and similar flat names. Next.js 16.4 nests
+  // these files on Windows; pnpm build moves them back (scripts/flatten-segment-files.mjs).
+  const nested = files(OUT).map((path) => relative(OUT, path)).filter((path) => /(^|[\\/])__next\.[^\\/]+[\\/]/.test(path))
+  check(nested.length === 0, "Route prefetch files should be flat __next.*.txt files (found " + nested.join(", ") + ")")
+  check(existsSync(join(OUT, "features", "__next.features.__PAGE__.txt")), "The /features/ prefetch file should be where the client router requests it")
 
   for (const file of files(OUT).filter((path) => /\.(html|txt|xml|js)$/.test(path))) {
     const text = readFileSync(file, "utf8")

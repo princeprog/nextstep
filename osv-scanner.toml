@@ -1,0 +1,13 @@
+# Triaged exceptions for the OSV-Scanner job in .github/workflows/security.yml. Each entry needs a reason and an expiry
+# date; after that date the scan fails again so the exception gets another look. pnpm audit separately fails the
+# Security workflow on any high or critical advisory.
+
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+ignoreUntil = 2027-02-01
+reason = "Medium. minimatch 3.1.5 (eslint 9) and 10.2.6 (typescript-eslint) only match this project's own lint patterns, and the issue needs attacker-supplied patterns with optimizationLevel 2 or higher. The only fix is minimatch 11, which these packages do not support yet."
+
+[[IgnoredVulns]]
+id = "GHSA-3g3m-2fjr-6pw4"
+ignoreUntil = 2027-02-01
+reason = "Medium. glob 13.0.6 comes from lighthouse > @sentry/node, used only by pnpm perf on a developer machine, and the issue needs an aborted glob walk. The only fix is glob 14, which @sentry/bundler-plugins does not support yet."

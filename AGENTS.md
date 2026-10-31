@@ -48,6 +48,17 @@ Product requirements, rules, and decisions live in the owner's local Obsidian va
 pnpm lint; pnpm typecheck; pnpm test; pnpm build; pnpm test:static; pnpm test:e2e
 ```
 
+CI runs the same checks on every push and pull request (`.github/workflows/ci.yml`). The Security workflow runs
+`pnpm audit` (fails on high or critical), OSV-Scanner over `pnpm-lock.yaml`, and gitleaks over the full git history. Add
+an OSV-Scanner exception to `osv-scanner.toml` only for a triaged advisory, with a reason and an expiry date. Pin any new
+third-party action to a full commit SHA with the version in a trailing comment.
+
+After changes that affect loading (fonts, CSS, images, scripts, or `next.config.ts`), run `pnpm perf` and compare with
+the results in the README. It is a lab check, not a CI gate.
+
+Build with `pnpm build`, not `next build` directly: it also moves route prefetch files that Next.js 16.4 misplaces on
+Windows.
+
 ## Don'ts
 
 - No deployment or production hosting changes without an explicit request from the owner.

@@ -16,6 +16,8 @@ app, API, or database at build time or at runtime.
 
 - Next.js 16.4 static export (`output: "export"`, trailing slashes), React 19, TypeScript
 - Custom components with CSS Modules and a small global stylesheet. **No shadcn/ui, Radix, Base UI, or Tailwind.**
+- Pages inline their CSS into the HTML, split by route (`experimental.inlineCss` and graph CSS chunking in
+  `next.config.ts`), so first paint doesn't wait on stylesheet requests
 - Fraunces (display) and Manrope (body), self-hosted at build time through `next/font`
 - Design direction "A calmer next step": warm paper, deep ink, evergreen, and a small amber highlight; a hand-built
   product illustration with fictional data. Motion follows Emil Kowalski's design-engineering guidance: one short ease-out
@@ -53,24 +55,70 @@ pnpm build      # static files in out/
 
 ## Commands
 
+Use Node 24 and pnpm 11 (the version in `packageManager`).
+
 ```powershell
 pnpm install
 pnpm dev            # development server on :3001
 pnpm lint
 pnpm typecheck
-pnpm test           # Vitest: build configuration rules
+pnpm test           # Vitest: build configuration rules and the build scripts
 pnpm build          # static export to out/
-pnpm start          # serve out/ like a plain static host on :3001 (404.html for missing pages)
+pnpm start          # serve out/ like a plain static host on :3001 (gzip, 404.html for missing pages)
 pnpm test:static    # builds production and preview variants and checks the exported files
-pnpm test:e2e       # Playwright: builds, serves out/, checks routes, no-JS, axe, keyboard, 320 px
+pnpm test:e2e       # Playwright: builds, serves out/, checks routes, no-JS, console errors, axe, keyboard, 320 px
+pnpm perf           # Lighthouse mobile lab check of a production-configured build (not part of CI)
 ```
+
+`pnpm build` runs `next build` and then `scripts/flatten-segment-files.mjs`. On Windows, Next.js 16.4 writes some route
+prefetch files into subfolders instead of the flat names the client router requests, so those prefetches return 404.
+The script moves them back and changes nothing on macOS or Linux. Build with `pnpm build` rather than `next build`.
 
 `pnpm test:static` checks that a production build without an origin fails, preview pages are noindex with an empty
 sitemap, production pages have unique titles, descriptions, one h1, canonical URLs, absolute `og:image`, a sitemap
-listing only `/` and `/features/`, and no references to localhost or the app API. It also confirms the project has no
-shadcn/ui dependencies, files, or imports. It leaves `out/` holding the production-configured build.
+listing only `/` and `/features/`, inlined CSS, route prefetch files where the router requests them, and no references
+to localhost or the app API. It also confirms the project has no shadcn/ui dependencies, files, or imports. It leaves
+`out/` holding the production-configured build.
 
-Run `pnpm exec playwright install chromium` once before the first `pnpm test:e2e`.
+`pnpm test:e2e` first tests the build without call-to-action URLs. A second Playwright project then rebuilds with both
+URLs and checks the links, the compact header button, 320 px layouts, and axe. Run
+`pnpm exec playwright install chromium` once before the first `pnpm test:e2e`.
+
+`pnpm perf` builds with `SITE_ENV=production` and the placeholder origin `https://nextstep.example.com` (or your
+`SITE_PUBLIC_ORIGIN`), serves `out/` on a free port, and runs Lighthouse with its default mobile emulation and simulated
+throttling against `/`, `/features/`, and `/privacy/`, three runs each. It prints the median run's scores with LCP, CLS,
+TBT, FCP, and Speed Index, and saves every JSON report in `lighthouse-reports/` (git-ignored, about 6 MB per run, safe
+to delete). Add `--runs=1` for a quick pass or `--no-build` to measure the current `out/`. Lighthouse uses Chrome; set
+`CHROME_PATH` to use another Chromium browser such as Microsoft Edge, which the script also falls back to on Windows.
+Lab numbers vary a little between runs and machines, so compare runs from the same machine.
+
+Measured on 2026-11-01 with Lighthouse 13.6.0 and Chrome 156 on Windows, median of three runs:
+
+| Page | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT | FCP | Speed Index |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 33 ms | 0.9 s | 0.9 s |
+| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 53 ms | 0.7 s | 0.7 s |
+| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 62 ms | 0.7 s | 0.7 s |
+
+`/privacy/` scores 66 for SEO only because it is deliberately noindex. Before the 2026-11-01 changes, the same check
+found render-blocking stylesheets and 0.9 s LCP on every page, and Best practices 96 from the Windows prefetch 404s.
+Lighthouse still lists unused and legacy JavaScript (about 29 KiB and 14 KiB compressed); both come from the Next.js
+runtime.
+
+## Continuous integration
+
+GitHub Actions runs two workflows with read-only access to the repository:
+
+- **CI** (`.github/workflows/ci.yml`), on every push and pull request: `pnpm install --frozen-lockfile`, lint,
+  typecheck, unit tests, build, static checks, and the Playwright tests in Chromium. When a step fails, it uploads the
+  Playwright report and traces. A newer push cancels the run it replaces.
+- **Security** (`.github/workflows/security.yml`), on every push and pull request and weekly: `pnpm audit` fails on high
+  or critical advisories, OSV-Scanner fails on any known vulnerability in `pnpm-lock.yaml` that `osv-scanner.toml`
+  doesn't list as a triaged exception with a reason and an expiry date, and gitleaks scans the full git history with a
+  checksum-verified binary.
+
+Dependabot proposes npm and GitHub Actions updates weekly and waits a week after each npm release. Actions are pinned to
+full commit SHAs with the version in a trailing comment; pin new ones the same way.
 
 ## Project context (Obsidian)
 

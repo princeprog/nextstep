@@ -1,18 +1,15 @@
 import type { Metadata, Viewport } from "next"
 import { Fraunces, Manrope } from "next/font/google"
 
+// Global base styles load before any component's CSS Module, so component classes can override them (for example
+// the compact header button over .button).
+import "./globals.css"
+
 import { SiteFooter } from "@/components/site-footer"
 import { siteConfig } from "@/site-config"
 
-import "./globals.css"
-
-const display = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  axes: ["opsz", "SOFT"],
-  style: ["normal", "italic"],
-  display: "swap",
-})
+// Upright Fraunces only. The italic face is used on the home page alone, so it is loaded (and preloaded) there.
+const display = Fraunces({ subsets: ["latin"], variable: "--font-display", axes: ["opsz", "SOFT"], display: "swap" })
 
 const body = Manrope({ subsets: ["latin"], variable: "--font-body", display: "swap" })
 

@@ -36,6 +36,7 @@
 }
 
 .title em {
+  font-family: var(--font-display-italic), Georgia, "Times New Roman", serif;
   font-style: italic;
   color: var(--evergreen);
 }
@@ -150,7 +151,7 @@
 
 .storyNumber {
   color: var(--evergreen);
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display-italic), Georgia, serif;
   font-size: 1.1rem;
   font-style: italic;
 }
@@ -286,7 +287,7 @@
   counter-increment: step;
   content: "0" counter(step);
   color: var(--evergreen);
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display-italic), Georgia, serif;
   font-size: 1.1rem;
   font-style: italic;
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Fraunces } from "next/font/google"
 
 import { Cta } from "@/components/cta"
 import { ProductPreview } from "@/components/product-preview"
@@ -6,6 +7,15 @@ import { SiteHeader } from "@/components/site-header"
 import { pageMetadata } from "@/lib/metadata"
 
 import styles from "./home.module.css"
+
+// The italic display face appears only on this page, so it is loaded here instead of in the root layout.
+const displayItalic = Fraunces({
+  subsets: ["latin"],
+  style: "italic",
+  variable: "--font-display-italic",
+  axes: ["opsz", "SOFT"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -20,7 +30,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main id="main" tabIndex={-1}>
+      <main id="main" tabIndex={-1} className={displayItalic.variable}>
         <section className={styles.hero} aria-labelledby="hero-title">
           <div className={"container " + styles.heroGrid}>
             <div className={styles.heroCopy}>

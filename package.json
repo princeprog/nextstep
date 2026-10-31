@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",
-    "build": "next build",
+    "build": "next build && node scripts/flatten-segment-files.mjs",
     "start": "node scripts/serve-static.mjs",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:static": "node scripts/check-static.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "perf": "node scripts/perf-lab.mjs"
   },
   "dependencies": {
     "next": "16.4.3",
@@ -20,13 +21,17 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "lighthouse": "13.6.0",
     "typescript": "^5",
     "vitest": "^5.0.5"
   },
-  "packageManager": "pnpm@11.8.0"
+  "packageManager": "pnpm@11.8.0",
+  "engines": {
+    "node": ">=24"
+  }
 }
