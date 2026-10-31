@@ -37,7 +37,12 @@ Product requirements, rules, and decisions live in the owner's local Obsidian va
 - Copy must be truthful: don't advertise reminders, imports, AI, calendar sync, or other features the app doesn't have,
   and don't add invented testimonials, metrics, logos, or rankings. Use fictional names in product illustrations.
 - Calls to action read `PUBLIC_APP_URL` and `PUBLIC_DEMO_URL` through `src/site-config.ts`; without them, keep the availability note.
-- New indexable pages need `pageMetadata` and an entry in `INDEXABLE_ROUTES`. Keep `/privacy/` noindex until it is reviewed.
+- New indexable pages need `pageMetadata` and an entry in `INDEXABLE_ROUTES`. Keep `/privacy/` and `/terms/`
+  noindex and out of the sitemap until the owner approves their text.
+- The privacy policy must match what the app and API actually do. Before changing a claim about stored data, emails,
+  third parties, or retention, check the API code (`nextstep-api`) and its README; when the app's data handling
+  changes, update the policy and its "Last updated" date in the same change. Don't add legal claims the owner hasn't
+  approved. Operator details live in `src/lib/operator.ts`.
 - Motion: CSS only, opacity and transform, under about 300 ms for UI (a short explanatory entrance may run longer),
   hover effects behind `(hover: hover) and (pointer: fine)`, and a `prefers-reduced-motion` alternative.
 - Keep content readable at 320 px, keyboard accessible with visible focus, and meeting WCAG 2.2 AA contrast.

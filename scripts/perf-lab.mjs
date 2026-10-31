@@ -14,7 +14,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { createRequire } from "node:module"
 import { join } from "node:path"
 
-const PAGES = ["/", "/features/", "/privacy/"]
+const PAGES = ["/", "/features/", "/privacy/", "/terms/"]
 const CATEGORIES = ["performance", "accessibility", "best-practices", "seo"]
 // Placeholder canonical origin for measuring only, the same one pnpm test:static uses. Set SITE_PUBLIC_ORIGIN to override.
 const MEASURE_ORIGIN = "https://nextstep.example.com"

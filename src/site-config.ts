@@ -94,6 +94,6 @@ export function resolveSiteConfig(env: Record<string, string | undefined>): Site
 
 export const siteConfig = resolveSiteConfig(process.env)
 
-/** Public routes that may appear in the production sitemap. The privacy draft is excluded until reviewed. */
+/** Public routes that may appear in the production sitemap. The privacy policy and terms stay out until the owner approves them. */
 export const INDEXABLE_ROUTES = ["/", "/features/"] as const
 

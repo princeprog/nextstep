@@ -19,6 +19,11 @@
   font-size: clamp(1.1rem, 2vw, 1.25rem);
 }
 
+.updated {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -89,6 +94,8 @@
 
 .article {
   max-width: 44rem;
+  /* Long email addresses must wrap at 320 px. */
+  overflow-wrap: break-word;
 }
 
 .article h2 {
@@ -101,8 +108,17 @@
   color: var(--ink-soft);
 }
 
-.article p + p {
+.article strong {
+  color: var(--ink);
+}
+
+.article p + p,
+.article ul + p {
   margin-top: 0.85rem;
+}
+
+.article p + ul {
+  margin-top: 0.6rem;
 }
 
 .article ul {
@@ -119,6 +135,16 @@
   background: var(--amber-soft);
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.pending {
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--amber-soft);
+  color: var(--ink);
+  font-size: 0.9em;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .notFound {

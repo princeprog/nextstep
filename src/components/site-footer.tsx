@@ -19,6 +19,7 @@ export function SiteFooter() {
             <li><Link href="/">Home</Link></li>
             <li><Link href="/features/">Features</Link></li>
             <li><Link href="/privacy/">Privacy</Link></li>
+            <li><Link href="/terms/">Terms</Link></li>
           </ul>
         </nav>
       </div>

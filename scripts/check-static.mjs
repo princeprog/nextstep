@@ -42,7 +42,7 @@ check(/SITE_PUBLIC_ORIGIN is required/.test(missing.stdout + missing.stderr), "M
 const preview = build("preview", { SITE_ENV: "preview", SITE_PUBLIC_ORIGIN: "https://preview.nextstep.example.com" })
 check(preview.status === 0, "Preview build should succeed")
 if (preview.status === 0) {
-  for (const page of ["index.html", "features/index.html", "privacy/index.html"]) {
+  for (const page of ["index.html", "features/index.html", "privacy/index.html", "terms/index.html"]) {
     check(/noindex/.test(meta(read(page), "robots") ?? ""), "Preview " + page + " should be noindex")
   }
   check(!read("sitemap.xml").includes("<url>"), "Preview sitemap should list no URLs")
@@ -51,7 +51,7 @@ if (preview.status === 0) {
   check(read("index.html").includes("Not publicly hosted yet"), "Unconfigured CTAs should show the availability note")
 }
 
-// 3. Production: canonical URLs, indexable public pages, privacy draft excluded, CTAs linked.
+// 3. Production: canonical URLs, indexable public pages, privacy policy and terms excluded until approved, CTAs linked.
 const production = build("production", {
   SITE_ENV: "production",
   SITE_PUBLIC_ORIGIN: ORIGIN,
@@ -60,7 +60,7 @@ const production = build("production", {
 })
 check(production.status === 0, "Production build should succeed:\n" + production.stdout + production.stderr)
 if (production.status === 0) {
-  for (const file of ["index.html", "features/index.html", "privacy/index.html", "404.html", "robots.txt", "sitemap.xml", "icon.svg"]) {
+  for (const file of ["index.html", "features/index.html", "privacy/index.html", "terms/index.html", "404.html", "robots.txt", "sitemap.xml", "icon.svg"]) {
     check(existsSync(join(OUT, file)), "Missing exported file: " + file)
   }
   check(existsSync(join(OUT, "og.png")), "Missing static Open Graph image og.png")
@@ -70,6 +70,7 @@ if (production.status === 0) {
     "index.html": { path: "/", indexable: true },
     "features/index.html": { path: "/features/", indexable: true },
     "privacy/index.html": { path: "/privacy/", indexable: false },
+    "terms/index.html": { path: "/terms/", indexable: false },
   }
   const titles = new Set()
   for (const [file, expected] of Object.entries(pages)) {

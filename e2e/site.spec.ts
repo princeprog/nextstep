@@ -4,8 +4,10 @@ import { expect, test } from "@playwright/test"
 const PAGES = [
   { path: "/", h1: /Keep your job search/ },
   { path: "/features/", h1: "What NextStep does today" },
-  { path: "/privacy/", h1: "Privacy" },
+  { path: "/privacy/", h1: "Privacy policy" },
+  { path: "/terms/", h1: "Terms of use" },
 ]
+const OPERATOR_EMAIL = "alprincellavan2019@gmail.com"
 
 test("every public route loads directly from static files", async ({ page }) => {
   for (const { path, h1 } of PAGES) {
@@ -30,7 +32,11 @@ test("content and navigation work with JavaScript disabled", async ({ browser })
   await expect(page).toHaveURL(/\/features\/$/)
   await expect(page.getByRole("heading", { level: 1, name: "What NextStep does today" })).toBeVisible()
   await page.getByRole("navigation", { name: "Footer" }).getByRole("link", { name: "Privacy" }).click()
-  await expect(page.getByRole("heading", { level: 1, name: "Privacy" })).toBeVisible()
+  await expect(page.getByRole("heading", { level: 1, name: "Privacy policy" })).toBeVisible()
+  await expect(page.getByRole("link", { name: OPERATOR_EMAIL }).first()).toHaveAttribute("href", "mailto:" + OPERATOR_EMAIL)
+  await page.getByRole("navigation", { name: "Footer" }).getByRole("link", { name: "Terms" }).click()
+  await expect(page.getByRole("heading", { level: 1, name: "Terms of use" })).toBeVisible()
+  await expect(page.getByRole("link", { name: OPERATOR_EMAIL }).first()).toHaveAttribute("href", "mailto:" + OPERATOR_EMAIL)
   await context.close()
 })
 
@@ -49,7 +55,7 @@ test("pages load without console errors or failed requests, including the router
 })
 
 test("pages pass automated accessibility checks", async ({ page }) => {
-  for (const path of ["/", "/features/", "/privacy/", "/no-such-page/"]) {
+  for (const path of ["/", "/features/", "/privacy/", "/terms/", "/no-such-page/"]) {
     await page.goto(path)
     await page.waitForTimeout(800) // let the short entrance animation finish before measuring contrast
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze()
@@ -77,7 +83,7 @@ test("layouts fit 320 px with reduced motion and load nothing from other origins
   })
   await page.emulateMedia({ reducedMotion: "reduce" })
   await page.setViewportSize({ width: 320, height: 740 })
-  for (const path of ["/", "/features/", "/privacy/", "/no-such-page/"]) {
+  for (const path of ["/", "/features/", "/privacy/", "/terms/", "/no-such-page/"]) {
     await page.goto(path)
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)

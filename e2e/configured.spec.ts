@@ -8,7 +8,7 @@ import { expect, test } from "@playwright/test"
 // "configured" project in playwright.config.ts.
 const APP_URL = "https://app.nextstep.example.com/register"
 const DEMO_URL = "https://app.nextstep.example.com/demo"
-const PATHS = ["/", "/features/", "/privacy/"]
+const PATHS = ["/", "/features/", "/privacy/", "/terms/"]
 
 test.describe.configure({ mode: "serial" })
 

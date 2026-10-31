@@ -30,10 +30,17 @@ app, API, or database at build time or at runtime.
 | --- | --- |
 | `/` | indexable in production |
 | `/features/` | indexable in production |
-| `/privacy/` | draft portfolio disclosure; always noindex and not in the sitemap until reviewed |
+| `/privacy/` | privacy policy; noindex and not in the sitemap until the owner approves the text |
+| `/terms/` | terms of use; noindex and not in the sitemap until the owner approves the text |
 | `/404.html` | static not-found page |
 
 Plus `robots.txt`, `sitemap.xml`, `og.png` (generated at build), and `icon.svg`.
+
+The privacy policy and terms describe what the app and API actually do: the data stored, the emails sent, the
+Pwned Passwords check, and how long each kind of record is kept. Both are marked as drafts that take effect at launch,
+and the privacy policy lists the choices still open (hosting provider and data location, email provider, backup and
+log retention, error monitoring). When the app's data handling changes, update the policy in the same change and move
+its "Last updated" date. `src/lib/operator.ts` holds the operator's name and contact email.
 
 ## Build-time configuration
 
@@ -86,7 +93,7 @@ URLs and checks the links, the compact header button, 320 px layouts, and axe. R
 
 `pnpm perf` builds with `SITE_ENV=production` and the placeholder origin `https://nextstep.example.com` (or your
 `SITE_PUBLIC_ORIGIN`), serves `out/` on a free port, and runs Lighthouse with its default mobile emulation and simulated
-throttling against `/`, `/features/`, and `/privacy/`, three runs each. It prints the median run's scores with LCP, CLS,
+throttling against `/`, `/features/`, `/privacy/`, and `/terms/`, three runs each. It prints the median run's scores with LCP, CLS,
 TBT, FCP, and Speed Index, and saves every JSON report in `lighthouse-reports/` (git-ignored, about 6 MB per run, safe
 to delete). Add `--runs=1` for a quick pass or `--no-build` to measure the current `out/`. Lighthouse uses Chrome; set
 `CHROME_PATH` to use another Chromium browser such as Microsoft Edge, which the script also falls back to on Windows.
@@ -96,11 +103,12 @@ Measured on 2026-11-01 with Lighthouse 13.6.0 and Chrome 156 on Windows, median 
 
 | Page | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT | FCP | Speed Index |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 33 ms | 0.9 s | 0.9 s |
-| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 53 ms | 0.7 s | 0.7 s |
-| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 62 ms | 0.7 s | 0.7 s |
+| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 29 ms | 0.9 s | 0.9 s |
+| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 52 ms | 0.7 s | 0.7 s |
+| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 52 ms | 0.7 s | 0.7 s |
+| `/terms/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 57 ms | 0.7 s | 0.7 s |
 
-`/privacy/` scores 66 for SEO only because it is deliberately noindex. Before the 2026-11-01 changes, the same check
+`/privacy/` and `/terms/` score 66 for SEO only because they are deliberately noindex. Before the 2026-11-01 changes, the same check
 found render-blocking stylesheets and 0.9 s LCP on every page, and Best practices 96 from the Windows prefetch 404s.
 Lighthouse still lists unused and legacy JavaScript (about 29 KiB and 14 KiB compressed); both come from the Next.js
 runtime.
