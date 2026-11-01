@@ -1,0 +1,777 @@
+/* Feature tiles. Each visual's resting style is a complete, still picture. With a fine pointer (and motion allowed),
+   hovering a tile acts out its feature with transitions, so moving in and out quickly reverses smoothly; entering is
+   a little slower than leaving. */
+
+.hint {
+  display: none;
+}
+
+.hintDot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--amber);
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: clip;
+  padding: clamp(1.4rem, 2.6vw, 1.9rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.wide {
+  grid-column: span 4;
+}
+
+.wide .copy {
+  max-width: 36rem;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--evergreen);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.kicker svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.title {
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+}
+
+.text {
+  color: var(--ink-2);
+  font-size: 1rem;
+}
+
+.visual {
+  margin-top: auto;
+}
+
+/* Applications: a small board; Harbor Labs moves from Applied to Interview. */
+.kanban {
+  --gap: 0.5rem;
+  --pad: 0.45rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto auto auto;
+  column-gap: var(--gap);
+}
+
+.c1 {
+  grid-column: 1;
+}
+
+.c2 {
+  grid-column: 2;
+}
+
+.c3 {
+  grid-column: 3;
+}
+
+.r2 {
+  grid-row: 2;
+}
+
+.r3 {
+  grid-row: 3;
+}
+
+.lane {
+  position: relative;
+  grid-row: 1 / 4;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.laneTarget::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--mint);
+  opacity: 0;
+}
+
+.colHead {
+  z-index: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin: var(--pad) var(--pad) 0;
+  padding: 0.35rem 0.4rem;
+  color: var(--ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.swap {
+  display: inline-grid;
+  min-width: 1.4rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  font-style: normal;
+}
+
+.mini {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0.4rem var(--pad) 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  box-shadow: var(--shadow-sm);
+}
+
+.mini small {
+  overflow: hidden;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slot {
+  min-height: 2.9rem;
+  margin: 0.4rem var(--pad) var(--pad);
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 10px;
+}
+
+/* At rest (touch screens, reduced motion) Harbor Labs already sits in Interview. */
+.mover {
+  z-index: 2;
+  margin-bottom: var(--pad);
+  border-color: rgb(232 176 74 / 0.65);
+  box-shadow: 0 0 0 3px rgb(232 176 74 / 0.14), var(--shadow-md);
+  translate: calc(100% + 2 * var(--pad) + var(--gap)) 0;
+}
+
+.before {
+  opacity: 0;
+}
+
+/* Follow-ups: a task gets checked off, and a toast slides up over the list to confirm it. */
+.taskList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  overflow: clip;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.box {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  background: var(--surface);
+}
+
+.check {
+  position: absolute;
+  inset: -1.5px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: var(--evergreen);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.check svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke-width: 3;
+}
+
+.taskText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.taskText b {
+  font-weight: 600;
+}
+
+.task:first-child .taskText b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskText small {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+
+.strikeWrap {
+  position: relative;
+}
+
+.strike {
+  position: absolute;
+  top: 55%;
+  right: -2px;
+  left: -2px;
+  height: 1.5px;
+  background: var(--ink-2);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.toast {
+  position: absolute;
+  bottom: 0.35rem;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem 0.55rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 28px -12px rgb(13 37 32 / 0.4);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  translate: -50% 0;
+  transform: translateY(calc(100% + 1rem));
+}
+
+.toastIcon {
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.toastIcon svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke-width: 3;
+}
+
+/* Interviews: the card turns over to the prep notes kept with it. */
+.flip {
+  perspective: 1000px;
+}
+
+.flipInner {
+  display: grid;
+  transform-style: preserve-3d;
+}
+
+.face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-2);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.back {
+  gap: 0.45rem;
+  background: var(--surface);
+  transform: rotateY(180deg);
+}
+
+.faceHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.times {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.time strong {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.time small {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+
+.timeYou strong {
+  color: var(--evergreen);
+}
+
+.timeArrow {
+  width: 1rem;
+  height: 1rem;
+  color: var(--ink-3);
+}
+
+.faceMeta {
+  color: var(--ink-2);
+  font-size: 0.8rem;
+}
+
+.note {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Search: "harbor" is typed in, and the list narrows to the match. */
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgb(23 97 79 / 0.08);
+  font-size: 0.85rem;
+}
+
+.searchBox svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  color: var(--ink-3);
+}
+
+.field {
+  position: relative;
+  display: grid;
+  min-width: 0;
+}
+
+.field > * {
+  grid-area: 1 / 1;
+}
+
+.placeholder {
+  overflow: hidden;
+  color: var(--ink-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.query,
+.caret {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+.query {
+  color: var(--ink);
+  clip-path: inset(0 100% 0 0);
+}
+
+.caret {
+  width: 1.5px;
+  height: 1.15em;
+  align-self: center;
+  background: var(--evergreen);
+  opacity: 0;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.result small {
+  display: block;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.result mark {
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+}
+
+.mono {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 9px;
+  background: var(--mint);
+  color: var(--evergreen);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Privacy: the lock pulses once, and each guarantee is ticked in turn. */
+.vault {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.lock {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.35rem;
+  border-radius: 14px;
+  background: var(--night);
+  color: var(--amber);
+}
+
+.lock svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--evergreen);
+  border-radius: inherit;
+  opacity: 0;
+}
+
+.vaultRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.vaultRow svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  color: var(--evergreen);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-3);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .card {
+    transition: border-color 200ms ease;
+  }
+
+  .card:hover {
+    border-color: rgb(23 97 79 / 0.32);
+  }
+
+  /* Applications: at rest Harbor Labs waits in Applied; hovering springs it over to Interview. */
+  .mover {
+    translate: 0 0;
+    transition: translate 260ms var(--ease-out);
+  }
+
+  .before {
+    opacity: 1;
+  }
+
+  .after {
+    opacity: 0;
+  }
+
+  .before,
+  .after {
+    transition: opacity 160ms ease;
+  }
+
+  .laneTarget::after {
+    transition: opacity 220ms ease;
+  }
+
+  .pipelineCard:hover .mover {
+    translate: calc(100% + 2 * var(--pad) + var(--gap)) 0;
+    transition: translate 640ms var(--spring) 60ms;
+  }
+
+  .pipelineCard:hover .before {
+    opacity: 0;
+    transition-delay: 280ms;
+  }
+
+  .pipelineCard:hover .after {
+    opacity: 1;
+    transition-delay: 280ms;
+  }
+
+  .pipelineCard:hover .laneTarget::after {
+    opacity: 0.7;
+  }
+
+  /* Follow-ups */
+  .check {
+    transition: opacity 120ms ease, transform 180ms var(--ease-out);
+  }
+
+  .strike {
+    transition: transform 160ms var(--ease-out);
+  }
+
+  .toast {
+    transition: transform 220ms var(--ease-out);
+  }
+
+  .tasksCard:hover .check {
+    opacity: 1;
+    transform: none;
+    transition: opacity 150ms ease, transform 420ms var(--spring);
+  }
+
+  .tasksCard:hover .strike {
+    transform: none;
+    transition: transform 280ms var(--ease-out) 140ms;
+  }
+
+  .tasksCard:hover .toast {
+    transform: none;
+    transition: transform 460ms var(--ease-out) 260ms;
+  }
+
+  /* Interviews: turning over is movement on screen, so it eases in and out. */
+  .flipInner {
+    transition: transform 300ms var(--ease-out);
+  }
+
+  .interviewCard:hover .flipInner {
+    transform: rotateY(180deg);
+    transition: transform 640ms var(--ease-in-out);
+  }
+
+  /* Search: typed in six steps, one per letter. */
+  .placeholder {
+    transition: opacity 120ms ease;
+  }
+
+  .query {
+    transition: clip-path 120ms ease;
+  }
+
+  .caret {
+    transition: opacity 120ms ease, translate 120ms ease;
+  }
+
+  .other {
+    transition: opacity 180ms ease;
+  }
+
+  .result mark {
+    transition: background-color 200ms ease;
+  }
+
+  .searchCard:hover .placeholder {
+    opacity: 0;
+  }
+
+  .searchCard:hover .query {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 540ms steps(6, end) 120ms;
+  }
+
+  .searchCard:hover .caret {
+    opacity: 1;
+    translate: 6ch 0;
+    transition: opacity 80ms ease 120ms, translate 540ms steps(6, end) 120ms;
+  }
+
+  .searchCard:hover .other {
+    opacity: 0.35;
+    transition: opacity 260ms ease 680ms;
+  }
+
+  .searchCard:hover .result mark {
+    background: var(--amber-soft);
+    transition: background-color 260ms ease 680ms;
+  }
+
+  /* Privacy */
+  .vaultRow {
+    transition: translate 200ms var(--ease-out), border-color 200ms ease;
+  }
+
+  .privacyCard:hover .ring {
+    animation: ripple 720ms var(--ease-out);
+  }
+
+  .privacyCard:hover .vaultRow {
+    border-color: rgb(23 97 79 / 0.3);
+    translate: 4px 0;
+    transition: translate 320ms var(--spring), border-color 200ms ease;
+  }
+
+  .privacyCard:hover .vaultRow:nth-of-type(3) {
+    transition-delay: 70ms;
+  }
+
+  .privacyCard:hover .vaultRow:nth-of-type(4) {
+    transition-delay: 140ms;
+  }
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@media (max-width: 64rem) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    grid-column: span 1;
+  }
+
+  .wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 40rem) {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card,
+  .wide {
+    grid-column: auto;
+  }
+
+  /* Two lanes on phones, so the cards keep readable names. */
+  .kanban {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kanban .c3 {
+    display: none;
+  }
+}

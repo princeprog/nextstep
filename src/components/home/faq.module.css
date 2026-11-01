@@ -1,0 +1,104 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 2rem 4rem;
+}
+
+.intro {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.list {
+  border-top: 1px solid var(--line-strong);
+}
+
+.item {
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.3rem 0.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  list-style: none;
+  transition: color 200ms ease;
+}
+
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.icon {
+  flex: none;
+  width: 1.3rem;
+  height: 1.3rem;
+  color: var(--evergreen);
+  transition: transform 200ms var(--ease-out);
+}
+
+.item[open] .icon {
+  transform: rotate(45deg);
+}
+
+.answer {
+  max-width: 40rem;
+  padding: 0 2.5rem 1.4rem 0.25rem;
+  color: var(--ink-2);
+}
+
+/* Opening fades the answer in; closing is instant, so the exit is faster than the entrance. */
+.item[open] .answer {
+  animation: answer-in 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .question:hover {
+    color: var(--evergreen);
+  }
+}
+
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
+
+  .item[open] .answer {
+    animation: fade 150ms ease;
+  }
+}
+
+@media (max-width: 52rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro {
+    position: static;
+  }
+}

@@ -1,0 +1,465 @@
+/* A desk of scraps that gathers into one sorted list as it scrolls through the viewport. The resting style is the sorted
+   list, so browsers without scroll-driven animations, and reduced motion, show the finished list. */
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  height: clamp(27rem, 44vw, 32rem);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(rgb(13 37 32 / 0.1) 1px, transparent 1.3px) 0 0 / 20px 20px,
+    radial-gradient(60% 70% at 50% 50%, rgb(23 97 79 / 0.07), transparent 70%),
+    var(--surface-2);
+  container-type: size;
+}
+
+/* Scraps sit at --x/--y (percent of the stage) and tilt by --r degrees. At rest they're gathered into the list. */
+.scrap {
+  position: absolute;
+  top: calc(var(--y) * 1%);
+  left: calc(var(--x) * 1%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 15rem;
+  color: var(--ink-2);
+  font-size: 0.82rem;
+  opacity: 0;
+  rotate: calc(var(--r) * 1deg);
+  box-shadow: var(--shadow-md);
+}
+
+.scrap svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+.tab {
+  --x: 3;
+  --y: 8;
+  --r: -6;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 4px 4px;
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.favicon {
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 4px;
+  background: var(--evergreen);
+}
+
+.tabClose {
+  margin-left: 0.3rem;
+  color: var(--ink-3);
+}
+
+.sticky {
+  --x: 72;
+  --y: 5;
+  --r: 5;
+  width: 10.5rem;
+  padding: 0.9rem 1rem 1.15rem;
+  background: #fbe7a8;
+  color: #3b2f0b;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.25;
+  box-shadow: 0 14px 24px -14px rgb(59 47 11 / 0.6);
+}
+
+.mail {
+  --x: 4;
+  --y: 62;
+  --r: 3;
+  align-items: flex-start;
+  width: 15rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.mail svg {
+  margin-top: 0.15rem;
+  color: var(--evergreen);
+}
+
+.mail b {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.mail small {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+
+.bookmark {
+  --x: 63;
+  --y: 76;
+  --r: -4;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.bookmark svg {
+  color: var(--amber-ink);
+}
+
+.file {
+  --x: 39;
+  --y: 3;
+  --r: -2;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: #e4ecf0;
+  color: #284b5c;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.calendar {
+  --x: 84;
+  --y: 42;
+  --r: 8;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 7.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.calendar b {
+  padding: 0.25rem;
+  background: var(--danger);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.calendar span {
+  padding: 0.55rem 0.4rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* An amber band sweeps across while the scraps are being sorted; at rest it has passed out of view. */
+.sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent 38%, rgb(232 176 74 / 0.24) 50%, transparent 62%);
+  pointer-events: none;
+  transform: translateX(100%);
+}
+
+.sorted {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: min(32rem, calc(100% - 2rem));
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  translate: -50% -50%;
+}
+
+.sortedHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0.35rem 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.sortedHead small {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 0.55rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.row b {
+  display: block;
+  font-weight: 600;
+}
+
+.row small {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+
+.rowDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+
+.rowNext {
+  border-color: rgb(232 176 74 / 0.65);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgb(232 176 74 / 0.14);
+}
+
+.rowNext .rowDot {
+  background: var(--amber);
+}
+
+.chip {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #efede6;
+  color: var(--ink-2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chipToday {
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.chipInterview {
+  background: var(--mint);
+  color: var(--evergreen);
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 3rem;
+  max-width: 58rem;
+  margin: clamp(2rem, 5vw, 3rem) auto 0;
+}
+
+.compare h3 {
+  margin-bottom: 0.85rem;
+  font-size: 1.2rem;
+}
+
+.compare ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.compare li {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.55rem;
+  color: var(--ink-2);
+}
+
+.without li::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 1.5px solid var(--ink-3);
+  border-radius: 3px;
+  rotate: 8deg;
+}
+
+.with li::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--amber);
+}
+
+@container (width < 44rem) {
+  .scrap {
+    max-width: 12rem;
+    font-size: 0.75rem;
+  }
+
+  .tab {
+    --x: 2;
+    --y: 4;
+  }
+
+  .sticky {
+    --x: 56;
+    --y: 2;
+    width: 8.5rem;
+    font-size: 0.95rem;
+  }
+
+  .mail {
+    --x: 3;
+    --y: 70;
+    width: 12rem;
+  }
+
+  .bookmark {
+    --x: 34;
+    --y: 88;
+  }
+
+  .calendar {
+    --x: 66;
+    --y: 50;
+  }
+
+  .file {
+    display: none;
+  }
+
+  .row {
+    gap: 0.55rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .chip {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 0.55rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 44rem) {
+  .compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stage {
+      view-timeline-name: --sort;
+    }
+
+    .scrap {
+      animation: gather linear both;
+      animation-timeline: --sort;
+      animation-range: contain 0% contain 52%;
+    }
+
+    .sticky {
+      animation-range: contain 4% contain 55%;
+    }
+
+    .mail {
+      animation-range: contain 8% contain 58%;
+    }
+
+    .bookmark {
+      animation-range: contain 10% contain 58%;
+    }
+
+    .calendar {
+      animation-range: contain 6% contain 55%;
+    }
+
+    .sweep {
+      animation: sweep linear both;
+      animation-timeline: --sort;
+      animation-range: contain 22% contain 70%;
+    }
+
+    .sorted {
+      animation: card-in var(--ease-out) both;
+      animation-timeline: --sort;
+      animation-range: contain 34% contain 56%;
+    }
+
+    .row {
+      animation: row-in var(--ease-out) both;
+      animation-timeline: --sort;
+      animation-range: contain 44% contain 64%;
+    }
+
+    .row:nth-child(3) {
+      animation-range: contain 49% contain 69%;
+    }
+
+    .row:nth-child(4) {
+      animation-range: contain 54% contain 74%;
+    }
+
+    .row:nth-child(5) {
+      animation-range: contain 59% contain 79%;
+    }
+  }
+}
+
+/* Each scrap straightens, shrinks, and slides to the middle of the stage, where the list appears. */
+@keyframes gather {
+  from {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  to {
+    opacity: 0;
+    translate: calc((50 - var(--x)) * 1cqw - 50%) calc((50 - var(--y)) * 1cqh - 50%);
+    scale: 0.5;
+    rotate: 0deg;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+}

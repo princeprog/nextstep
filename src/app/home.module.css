@@ -1,66 +1,141 @@
-/* Hero: a dotted grid and soft evergreen light behind the product scene. */
+/* The hero: a dark evergreen stage under the floating header, with the dashboard straddling its lower edge. */
 .hero {
+  --light-band: clamp(9rem, 22vw, 17rem);
   position: relative;
   isolation: isolate;
   overflow: clip;
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3.5rem, 7vw, 6rem);
+  margin-top: -4.35rem;
+  padding-top: calc(4.35rem + clamp(3.5rem, 9vw, 6.5rem));
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: radial-gradient(rgb(13 37 32 / 0.14) 1px, transparent 1.4px);
-  background-size: 22px 22px;
-  mask-image: radial-gradient(ellipse 60% 70% at 72% 40%, black 15%, transparent 72%);
+  inset: 0 0 auto;
+  z-index: -3;
+  height: calc(100% - var(--light-band));
+  border-radius: 0 0 clamp(1.75rem, 4vw, 3rem) clamp(1.75rem, 4vw, 3rem);
+  background:
+    radial-gradient(55% 55% at 50% 0%, rgb(23 97 79 / 0.7), transparent 72%),
+    radial-gradient(40% 35% at 50% 100%, rgb(232 176 74 / 0.12), transparent 72%),
+    var(--night);
 }
 
 .hero::after {
   content: "";
   position: absolute;
-  top: -12rem;
-  right: -14rem;
+  inset: 0 0 auto;
   z-index: -2;
-  width: 60rem;
-  height: 44rem;
-  background:
-    radial-gradient(closest-side, rgb(23 97 79 / 0.16), transparent),
-    radial-gradient(closest-side at 32% 72%, rgb(232 176 74 / 0.13), transparent);
+  height: calc(100% - var(--light-band));
+  background-image: radial-gradient(rgb(243 241 234 / 0.14) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 65% 60% at 50% 25%, black 5%, transparent 75%);
 }
 
-.heroGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-  align-items: center;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
+/* Two faint staircases, the logo's shape, drawn large across the dark stage. */
+.heroStairs {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -2;
+  width: 100%;
+  height: calc(100% - var(--light-band));
+  stroke: rgb(243 241 234 / 0.09);
+  stroke-width: 1.5;
+  mask-image: radial-gradient(ellipse 42% 60% at 50% 34%, transparent 55%, black 90%);
+}
+
+.heroStairs path {
+  vector-effect: non-scaling-stroke;
 }
 
 .heroCopy {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.5rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  border: 1px solid rgb(243 241 234 / 0.16);
+  border-radius: 999px;
+  background: rgb(243 241 234 / 0.06);
+  color: var(--on-night-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.badge::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--amber);
+  box-shadow: 0 0 0 3px rgb(232 176 74 / 0.25), 0 0 12px rgb(232 176 74 / 0.6);
 }
 
 .title {
-  font-size: clamp(2.9rem, 6.4vw, 5.25rem);
-  line-height: 1;
-  letter-spacing: -0.045em;
+  max-width: 14ch;
+  margin-bottom: 0.2em;
+  color: var(--on-night);
+  font-size: clamp(3rem, 8.4vw, 6.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.title :global(.accent) {
+  color: var(--amber);
+}
+
+.moving {
+  position: relative;
+  display: inline-block;
+}
+
+/* The logo's staircase as an underline: it draws in after the headline arrives, and the dot lands where it ends. */
+.stairLine {
+  position: absolute;
+  bottom: -0.34em;
+  left: 2%;
+  width: 98%;
+  height: auto;
+  overflow: visible;
+  color: var(--amber);
+  animation: draw 780ms var(--ease-in-out) 560ms both;
+}
+
+.stairLine path {
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.stairLine circle {
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: land 560ms var(--spring) 1240ms both;
 }
 
 .lede {
-  max-width: 33rem;
-  color: var(--ink-2);
-  font-size: clamp(1.1rem, 1.9vw, 1.3rem);
+  max-width: 36rem;
+  color: var(--on-night-2);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
   line-height: 1.55;
 }
 
 .facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  color: var(--ink-2);
+  justify-content: center;
+  gap: 0.5rem 1.4rem;
+  color: var(--on-night-2);
   font-size: 0.925rem;
   font-weight: 500;
   list-style: none;
@@ -75,699 +150,38 @@
 .factIcon {
   width: 1rem;
   height: 1rem;
-  color: var(--evergreen);
+  color: var(--amber);
 }
 
-/* Sections */
-.section {
-  padding-block: clamp(4rem, 9vw, 7rem) 0;
-}
-
-.sectionHead {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  align-items: end;
-  gap: 1rem 4rem;
-  margin-bottom: clamp(2rem, 5vw, 3.25rem);
-}
-
-.sectionHeadMain {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sectionTitle {
-  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-}
-
-.sectionLede {
-  max-width: 30rem;
-  color: var(--ink-2);
-  font-size: 1.125rem;
-}
-
-/* Why it exists: scattered scraps against one aligned list. */
-.contrast {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.panel {
-  position: relative;
-  isolation: isolate;
-  overflow: clip;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  border-radius: var(--radius-lg);
-}
-
-.before {
-  border: 1px dashed var(--line-strong);
-  background: rgb(255 255 255 / 0.4);
-}
-
-.after {
-  background: var(--night);
-  color: var(--on-night);
-}
-
-.after::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(70% 60% at 100% 0%, rgb(23 97 79 / 0.55), transparent 70%);
-}
-
-.scatter,
-.aligned {
-  position: relative;
-  height: 8.5rem;
-}
-
-.scrap {
-  position: absolute;
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  color: var(--ink-2);
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.scrap:nth-child(1) {
-  top: 10%;
-  left: 0;
-  rotate: -6deg;
-}
-
-.scrap:nth-child(2) {
-  top: 0;
-  right: 3%;
-  rotate: 5deg;
-}
-
-.scrap:nth-child(3) {
-  bottom: 6%;
-  left: 12%;
-  rotate: 3deg;
-}
-
-.scrap:nth-child(4) {
-  right: 0;
-  bottom: 26%;
-  rotate: -4deg;
-}
-
-.aligned {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.45rem;
-}
-
-.lineItem {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 0.75rem;
-  border: 1px solid rgb(243 241 234 / 0.1);
-  border-radius: 8px;
-  background: rgb(243 241 234 / 0.05);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.lineItem:first-child {
-  border-color: rgb(232 176 74 / 0.45);
-}
-
-.lineDot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: var(--amber);
-}
-
-.lineStatus {
-  margin-left: auto;
-  color: #8fd3b8;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.panelTitle {
-  font-size: 1.4rem;
-}
-
-.points {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  list-style: none;
-}
-
-.points li {
-  display: grid;
-  grid-template-columns: 1.1rem 1fr;
-  align-items: baseline;
-  gap: 0.6rem;
-}
-
-.before .points li {
-  color: var(--ink-2);
-}
-
-.before .points li::before {
-  content: "";
-  width: 0.65rem;
-  height: 0.65rem;
-  border: 1.5px solid var(--ink-3);
-  border-radius: 3px;
-  rotate: 8deg;
-}
-
-.after .points li {
-  color: var(--on-night-2);
-}
-
-.after .points li::before {
-  content: "";
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: var(--amber);
-}
-
-/* What you can do: a bento grid of feature tiles. */
-.bento {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.tile {
-  grid-column: span 2;
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  overflow: clip;
-  padding: clamp(1.4rem, 2.6vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.tileWide {
-  grid-column: span 4;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: 2rem;
-}
-
-.tileCopy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--evergreen);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.kicker svg {
-  width: 1.15rem;
-  height: 1.15rem;
-}
-
-.tileTitle {
-  font-size: clamp(1.35rem, 2.1vw, 1.6rem);
-}
-
-.tileText {
-  color: var(--ink-2);
-  font-size: 1rem;
-}
-
-.tileVisual {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: auto;
-}
-
-.track {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-.trackStage {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  padding: 0.7rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-}
-
-.trackCount {
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.trackName {
-  color: var(--ink-3);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.trackCurrent {
-  border-color: transparent;
-  background: var(--evergreen);
-  color: #fff;
-}
-
-.trackCurrent .trackName {
-  color: rgb(255 255 255 / 0.86);
-}
-
-.statusRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.7rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  box-shadow: var(--shadow-md);
-}
-
-.statusCompany {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.statusCompany span {
-  color: var(--ink-3);
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.select {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.3rem 0.45rem 0.3rem 0.75rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.select svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--ink-3);
-}
-
-.dueList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.dueLabel {
-  margin-top: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.dueLabel:first-child {
-  margin-top: 0;
-}
-
-.overdue {
-  color: var(--danger);
-}
-
-.today {
-  color: var(--evergreen);
-}
-
-.dueItem {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  font-size: 0.875rem;
-  line-height: 1.35;
-}
-
-.checkbox {
-  width: 0.95rem;
-  height: 0.95rem;
-  border: 1.5px solid var(--line-strong);
-  border-radius: 4px;
-}
-
-.dueWhen {
-  color: var(--ink-3);
-  font-size: 0.8rem;
-  white-space: nowrap;
-}
-
-.interview {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-}
-
-.interviewType {
-  color: var(--ink-3);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.times {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.time {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.3;
-}
-
-.time strong {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.time span {
-  color: var(--ink-3);
-  font-size: 0.78rem;
-}
-
-.timeYou strong {
-  color: var(--evergreen);
-}
-
-.timeArrow {
-  width: 1rem;
-  height: 1rem;
-  color: var(--ink-3);
-}
-
-.prep {
-  padding: 0.5rem 0.7rem;
-  border-radius: 8px;
-  background: var(--amber-soft);
-  color: var(--amber-ink);
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.searchBox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0.85rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  box-shadow: 0 0 0 4px rgb(23 97 79 / 0.08);
-  font-size: 0.9rem;
-}
-
-.searchBox svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--ink-3);
-}
-
-.caret {
-  width: 1.5px;
-  height: 1.1em;
-  margin-left: -0.35rem;
-  background: var(--evergreen);
-}
-
-.filterChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.filterChip {
-  padding: 0.25rem 0.65rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink-2);
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.filterChipOn {
-  border-color: transparent;
-  background: var(--ink);
-  color: var(--canvas);
-}
-
-.result {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.7rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.result small {
-  display: block;
-  color: var(--ink-3);
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.result mark {
-  border-radius: 3px;
-  background: var(--amber-soft);
-  color: inherit;
-}
-
-.resultMono {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 9px;
-  background: var(--mint);
-  color: var(--evergreen);
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.privacyRow {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.privacyRow svg {
-  flex: none;
-  width: 1rem;
-  height: 1rem;
-  color: var(--evergreen);
-}
-
-/* How it works: three steps that rise like the staircase in the logo (a tread, then a riser up to the next tread),
-   ending at the amber dot. */
-.stairs {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  counter-reset: stair;
-  list-style: none;
-}
-
-.stairs::after {
-  content: "";
-  position: absolute;
-  top: -7px;
-  right: -7px;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: var(--amber);
-  box-shadow: 0 0 0 5px rgb(232 176 74 / 0.24);
-}
-
-.stair {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.5rem clamp(1.25rem, 2.5vw, 2rem) 1.5rem;
-  border-top: 2px solid var(--ink);
-  background: linear-gradient(to bottom, rgb(23 97 79 / 0.08), rgb(23 97 79 / 0) 70%);
-}
-
-.stair::before {
-  counter-increment: stair;
-  content: "0" counter(stair);
-  margin-bottom: 0.4rem;
-  color: var(--evergreen);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 2.6rem;
-  font-style: italic;
-  line-height: 1;
-}
-
-.stair:nth-child(1) {
-  margin-top: 9rem;
-}
-
-.stair:nth-child(2) {
-  margin-top: 4.5rem;
-}
-
-/* The riser from the previous step's tread up to this one. */
-.stair + .stair::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -1px;
-  width: 2px;
-  height: calc(4.5rem + 2px);
-  background: var(--ink);
-}
-
-.stairTitle {
-  font-size: 1.4rem;
-}
-
-.stairText {
-  color: var(--ink-2);
-}
-
-@media (max-width: 64rem) {
-  .bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@keyframes draw {
+  from {
+    clip-path: inset(-20% 100% -20% 0);
   }
 
-  .tile {
-    grid-column: span 1;
-  }
-
-  .tileWide {
-    grid-column: span 2;
+  to {
+    clip-path: inset(-20% 0 -20% 0);
   }
 }
 
-@media (max-width: 60rem) {
-  .heroGrid {
-    grid-template-columns: minmax(0, 1fr);
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
   }
 }
 
-@media (max-width: 56rem) {
-  .sectionHead,
-  .contrast {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .stairs {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .stairs::after {
-    top: auto;
-    right: auto;
-    bottom: -7px;
-    left: -6px;
-  }
-
-  .stair,
-  .stair:nth-child(n) {
-    margin-top: 0;
-    padding: 0 0 2.25rem 1.5rem;
-    border-top: 0;
-    border-left: 2px solid var(--ink);
-    background: none;
-  }
-
-  .stair + .stair::after {
-    content: none;
-  }
-
-  .stair:last-child {
-    padding-bottom: 0.5rem;
+@keyframes fade {
+  from {
+    opacity: 0;
   }
 }
 
-@media (max-width: 40rem) {
-  .bento,
-  .tileWide {
-    grid-template-columns: minmax(0, 1fr);
+@media (prefers-reduced-motion: reduce) {
+  .stairLine {
+    animation: fade 200ms ease both;
   }
 
-  .tile,
-  .tileWide {
-    grid-column: auto;
+  .stairLine circle {
+    animation: none;
   }
 }

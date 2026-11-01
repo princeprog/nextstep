@@ -1,0 +1,737 @@
+/* The hero's product scene, a hand-built and fictional slice of the NextStep dashboard. Scrolling drives a short
+   explanation: the window tips up to face the reader, callouts point at what matters, and a cursor completes the next
+   step (the checkbox fills, the title is struck through, the count drops, and a toast confirms it). Every element's
+   resting style is the finished state, so browsers without scroll-driven animations, and reduced motion, show it
+   done. Only transform, opacity, and clip-path animate. */
+
+.figure {
+  position: relative;
+  width: min(100% - 2 * var(--gutter), 74rem);
+  margin: clamp(3rem, 7vw, 4.5rem) auto 0;
+}
+
+.stage {
+  perspective: 1800px;
+  perspective-origin: 50% 0%;
+}
+
+.tilt {
+  position: relative;
+  transform-origin: 50% 0%;
+}
+
+/* A soft evergreen glow under the window. */
+.tilt::before {
+  content: "";
+  position: absolute;
+  inset: 12% 2% -10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(23 97 79 / 0.55), transparent);
+}
+
+.window {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(13 37 32 / 0.12);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 0 0 0 1px rgb(243 241 234 / 0.06), 0 2px 4px rgb(10 31 26 / 0.08), 0 40px 90px -40px rgb(10 31 26 / 0.6);
+  container-type: inline-size;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 2.6rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.lights {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.lights i {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: #dcd9d0;
+}
+
+.chromeTitle {
+  flex: 1;
+  margin-right: 3.2rem;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem 0.7rem;
+  border-right: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.sideBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 9px;
+  color: var(--ink-2);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.navItem svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.navCurrent {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--line);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.25rem 1.4rem 1.6rem;
+}
+
+.mainHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.heading {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.sub {
+  display: block;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btnPrimary,
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.8rem 0.45rem 0.6rem;
+  border-radius: 9px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.btnPrimary svg,
+.btnGhost svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.btnPrimary {
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.btnGhost {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+}
+
+.pipeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.stageChip {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.stageChip b {
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stageCurrent {
+  border-color: transparent;
+  background: var(--mint);
+  color: var(--evergreen);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.count {
+  min-width: 1.4rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.task {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.6rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.box {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  background: var(--surface);
+}
+
+.check {
+  position: absolute;
+  inset: -1.5px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.check svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke-width: 3;
+}
+
+.taskText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.taskText b {
+  font-weight: 600;
+}
+
+/* The story task stays on one line, so the strike always runs through the whole visible title. */
+.storyTask .taskText b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskText small {
+  color: var(--ink-3);
+  font-size: 0.72rem;
+}
+
+.strikeWrap {
+  position: relative;
+}
+
+.strike {
+  position: absolute;
+  top: 55%;
+  right: -2px;
+  left: -2px;
+  height: 1.5px;
+  background: var(--ink-2);
+  transform-origin: left center;
+}
+
+.chip {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chipOverdue {
+  background: #fbeae6;
+  color: var(--danger);
+}
+
+.chipToday {
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.chipUpcoming {
+  background: var(--mint);
+  color: var(--evergreen);
+}
+
+.chipDone {
+  background: #efede6;
+  color: var(--ink-2);
+}
+
+/* Two values share one grid cell: "from" gives way to "to", which is the resting state. */
+.swap {
+  display: inline-grid;
+}
+
+.chipSwap {
+  justify-items: end;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  font-style: normal;
+}
+
+.from {
+  opacity: 0;
+}
+
+.interview {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  line-height: 1.1;
+}
+
+.date small {
+  color: var(--danger);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.date b {
+  font-size: 1.1rem;
+}
+
+.times {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+}
+
+.timeYou {
+  color: var(--evergreen);
+  font-weight: 600;
+}
+
+/* Callouts: small labels that point at what matters. */
+.callout {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem 0.25rem 0.5rem;
+  border-radius: 999px;
+  background: var(--night);
+  color: var(--on-night);
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px -6px rgb(10 31 26 / 0.5);
+}
+
+.callout::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #8fd3b8;
+}
+
+.calloutStages {
+  top: -0.7rem;
+  right: 0.75rem;
+}
+
+.calloutOverdue {
+  top: -0.7rem;
+  right: 0.7rem;
+}
+
+.calloutNext {
+  top: -0.8rem;
+  right: 5.4rem;
+  background: var(--amber);
+  color: var(--night);
+}
+
+.calloutNext::before {
+  background: var(--night);
+}
+
+.calloutZone {
+  right: 0.7rem;
+  bottom: -0.7rem;
+}
+
+/* The cursor rests out of sight; its tip lands on the story task's checkbox. */
+.cursor {
+  position: absolute;
+  top: 0.98rem;
+  left: 0.84rem;
+  z-index: 3;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+  filter: drop-shadow(0 2px 3px rgb(10 31 26 / 0.35));
+}
+
+.cursor path {
+  fill: var(--night);
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.toast {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1rem 0.7rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px -12px rgb(13 37 32 / 0.4);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.toastIcon {
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: var(--evergreen);
+  color: #fff;
+}
+
+.toastIcon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  stroke-width: 3;
+}
+
+.caption {
+  max-width: 44rem;
+  margin: 1rem auto 0;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@container (width < 48rem) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar,
+  .actions,
+  .cardOverdue,
+  .cardInterviews,
+  .chromeTitle {
+    display: none;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toast {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}
+
+@container (width < 30rem) {
+  .pipeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calloutStages {
+    display: none;
+  }
+}
+
+/* The scroll story. Ranges follow the stage across the viewport ("cover" runs from its top entering at the bottom to
+   its bottom leaving at the top), so the story plays while the window is in view. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stage {
+      view-timeline-name: --dashboard;
+    }
+
+    .tilt {
+      animation: tip-up linear both;
+      animation-timeline: --dashboard;
+      animation-range: entry 0% cover 36%;
+    }
+
+    .callout {
+      animation: callout-in var(--ease-out) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 27% cover 34%;
+    }
+
+    .calloutOverdue {
+      animation-range: cover 28.5% cover 35.5%;
+    }
+
+    .calloutNext {
+      animation-range: cover 30% cover 37%;
+    }
+
+    .calloutZone {
+      animation-range: cover 31.5% cover 38.5%;
+    }
+
+    .cursor {
+      animation: cursor-path linear both;
+      animation-timeline: --dashboard;
+      animation-range: cover 38% cover 52%;
+    }
+
+    .check {
+      animation: check-in var(--spring) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 47.5% cover 49.5%;
+    }
+
+    .strike {
+      animation: strike var(--ease-out) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 48% cover 50.5%;
+    }
+
+    .from {
+      animation: swap-out var(--ease-out) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 48% cover 50%;
+    }
+
+    .to {
+      animation: swap-in var(--ease-out) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 48% cover 50%;
+    }
+
+    .toast {
+      animation: toast-in var(--ease-out) both;
+      animation-timeline: --dashboard;
+      animation-range: cover 49% cover 53%;
+    }
+  }
+}
+
+/* Without scroll-driven animations, the window simply settles once on load. */
+@supports not (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tilt {
+      animation: settle 900ms var(--ease-out) 150ms both;
+    }
+  }
+}
+
+@keyframes tip-up {
+  from {
+    transform: rotateX(24deg) scale(0.9) translateY(-1rem);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: rotateX(14deg) scale(0.95) translateY(1rem);
+  }
+}
+
+@keyframes callout-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
+  }
+}
+
+/* In from the lower right (ease-in-out, since it moves across the screen), a press, then away. */
+@keyframes cursor-path {
+  0% {
+    opacity: 0;
+    transform: translate(14rem, 7rem);
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(0, 0);
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  68% {
+    transform: scale(0.84);
+  }
+
+  78% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(2.5rem, 2.2rem);
+  }
+}
+
+@keyframes check-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes strike {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes swap-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-45%);
+  }
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(45%);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateY(calc(100% + 1.5rem));
+  }
+}

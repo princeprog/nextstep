@@ -63,6 +63,22 @@ test("pages pass automated accessibility checks", async ({ page }) => {
   }
 })
 
+test("the home page's scroll stories pass accessibility checks in their finished state", async ({ page }) => {
+  // At the top of the page, scenes further down wait in their starting state, and axe can't measure contrast off
+  // screen. With reduced motion every scene rests in its finished state; each section is scanned while it's in view.
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/")
+  for (const heading of ["hero-title", "sort-title", "stories-title", "how-title", "hood-title", "faq-title", "closing-title"]) {
+    await page.locator("#" + heading).scrollIntoViewIfNeeded()
+    await page.waitForTimeout(200)
+    const results = await new AxeBuilder({ page })
+      .include("section:has(#" + heading + ")")
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+      .analyze()
+    expect(results.violations, heading).toEqual([])
+  }
+})
+
 test("keyboard users can skip to content and see focus", async ({ page }) => {
   await page.goto("/")
   await page.keyboard.press("Tab")

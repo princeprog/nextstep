@@ -42,8 +42,26 @@
   bottom: -2px;
   z-index: -1;
   width: clamp(15rem, 36vw, 27rem);
-  height: auto;
-  color: rgb(243 241 234 / 0.18);
+  aspect-ratio: 420 / 300;
+  color: rgb(243 241 234 / 0.2);
+}
+
+.motifLine {
+  width: 100%;
+  height: 100%;
+}
+
+/* Sits where the staircase ends (x 380, y 20 in the 420 x 300 drawing). */
+.motifDot {
+  position: absolute;
+  top: 6.667%;
+  left: 90.476%;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -0.55rem 0 0 -0.55rem;
+  border-radius: 999px;
+  background: var(--amber);
+  box-shadow: 0 0 0 0.4rem rgb(232 176 74 / 0.18), 0 0 2.5rem rgb(232 176 74 / 0.45);
 }
 
 .title {
@@ -56,4 +74,43 @@
 
 .title :global(.accent) {
   color: var(--amber);
+}
+
+/* "entry" ranges finish once the panel is fully on screen, which every page can reach because the footer follows. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .panel {
+      view-timeline-name: --band;
+    }
+
+    .motifLine {
+      animation: draw linear both;
+      animation-timeline: --band;
+      animation-range: entry 10% entry 85%;
+    }
+
+    .motifDot {
+      animation: land linear both;
+      animation-timeline: --band;
+      animation-range: entry 80% entry 100%;
+    }
+  }
+}
+
+@keyframes draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
 }

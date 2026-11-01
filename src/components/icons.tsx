@@ -101,3 +101,58 @@ export function LockIcon(props: IconProps) {
     </Icon>
   )
 }
+
+export function DashboardIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="4" y="4" width="7" height="7" rx="1.5" />
+      <rect x="13" y="4" width="7" height="4.5" rx="1.5" />
+      <rect x="13" y="10.5" width="7" height="9.5" rx="1.5" />
+      <rect x="4" y="13" width="7" height="7" rx="1.5" />
+    </Icon>
+  )
+}
+
+export function SlidersIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4.5 7h9M18 7h1.5M4.5 17h3M12 17h7.5" />
+      <circle cx="16" cy="7" r="2" />
+      <circle cx="10" cy="17" r="2" />
+    </Icon>
+  )
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7.5 7.5 5.5 7.5-5.5" />
+    </Icon>
+  )
+}
+
+export function FileIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M7 3.5h6.5L18 8v12.5H7z" />
+      <path d="M13 3.5v5h5" />
+    </Icon>
+  )
+}
+
+export function PlusIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 5v14M5 12h14" />
+    </Icon>
+  )
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m12 4.5 2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1-3.8-3.6 5.2-.8z" />
+    </Icon>
+  )
+}

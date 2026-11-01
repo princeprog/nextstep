@@ -44,8 +44,12 @@ Product requirements, rules, and decisions live in the owner's local Obsidian va
   third parties, or retention, check the API code (`nextstep-api`) and its README; when the app's data handling
   changes, update the policy and its "Last updated" date in the same change. Don't add legal claims the owner hasn't
   approved. Operator details live in `src/lib/operator.ts`.
-- Motion: CSS only, opacity and transform, under about 300 ms for UI (a short explanatory entrance may run longer),
-  hover effects behind `(hover: hover) and (pointer: fine)`, and a `prefers-reduced-motion` alternative.
+- Motion: CSS only, animating transform, opacity, and clip-path (the skill's tool for reveals). Under about 300 ms for UI;
+  an explanation may run longer. Scroll-driven animations (`animation-timeline`) go inside
+  `@supports (animation-timeline: view())` and `(prefers-reduced-motion: no-preference)`, and an element's resting style is
+  its finished state, so browsers without support, and reduced motion, show the finished page. Text must never rest at
+  partial opacity. Hover effects go behind `(hover: hover) and (pointer: fine)` and use transitions, so they can be
+  interrupted.
 - Keep content readable at 320 px, keyboard accessible with visible focus, and meeting WCAG 2.2 AA contrast.
 
 ## Verification
