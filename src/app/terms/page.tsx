@@ -27,7 +27,6 @@ export default function TermsPage() {
       <main id="main" tabIndex={-1} className={styles.page}>
         <div className="container">
           <div className={styles.intro}>
-            <span className="eyebrow">Terms</span>
             <h1 className={styles.title}>Terms of use</h1>
             <span className={styles.status}>Draft · not in effect until NextStep launches</span>
             <p className={styles.lede}>

@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T09:20:55Z",
+  "title": "Design System: NextStep",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "canonical": "#176ff0",
+        "cssVar": "--blue",
+        "tonalRamp": [
+          "oklch(15.0% 0.063 259.4)",
+          "oklch(26.4% 0.118 259.4)",
+          "oklch(37.9% 0.164 259.4)",
+          "oklch(49.3% 0.198 259.4)",
+          "oklch(60.7% 0.205 259.4)",
+          "oklch(72.1% 0.165 259.4)",
+          "oklch(83.6% 0.106 259.4)",
+          "oklch(95.0% 0.031 259.4)"
+        ]
+      },
+      "blue-strong": {
+        "role": "primary",
+        "displayName": "Pressed Blue",
+        "canonical": "#0f5bd0",
+        "cssVar": "--blue-strong",
+        "tonalRamp": [
+          "oklch(15.0% 0.058 260.1)",
+          "oklch(26.4% 0.118 260.1)",
+          "oklch(37.9% 0.165 260.1)",
+          "oklch(49.3% 0.193 260.1)",
+          "oklch(60.7% 0.175 260.1)",
+          "oklch(72.1% 0.138 260.1)",
+          "oklch(83.6% 0.088 260.1)",
+          "oklch(95.0% 0.029 260.1)"
+        ]
+      },
+      "blue-ink": {
+        "role": "primary",
+        "displayName": "Blue Ink",
+        "canonical": "#1252c9",
+        "cssVar": "--blue-ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.059 261.6)",
+          "oklch(26.4% 0.123 261.6)",
+          "oklch(37.9% 0.172 261.6)",
+          "oklch(49.3% 0.195 261.6)",
+          "oklch(60.7% 0.172 261.6)",
+          "oklch(72.1% 0.134 261.6)",
+          "oklch(83.6% 0.086 261.6)",
+          "oklch(95.0% 0.029 261.6)"
+        ]
+      },
+      "blue-soft": {
+        "role": "primary",
+        "displayName": "Blue Wash",
+        "canonical": "#e8f0fe",
+        "cssVar": "--blue-soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 261.8)",
+          "oklch(26.4% 0.009 261.8)",
+          "oklch(37.9% 0.012 261.8)",
+          "oklch(49.3% 0.014 261.8)",
+          "oklch(60.7% 0.017 261.8)",
+          "oklch(72.1% 0.018 261.8)",
+          "oklch(83.6% 0.020 261.8)",
+          "oklch(95.0% 0.021 261.8)"
+        ]
+      },
+      "blue-line": {
+        "role": "primary",
+        "displayName": "Blue Line",
+        "canonical": "rgb(23 111 240 / 0.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.063 259.4)",
+          "oklch(26.4% 0.118 259.4)",
+          "oklch(37.9% 0.164 259.4)",
+          "oklch(49.3% 0.198 259.4)",
+          "oklch(60.7% 0.205 259.4)",
+          "oklch(72.1% 0.165 259.4)",
+          "oklch(83.6% 0.106 259.4)",
+          "oklch(95.0% 0.031 259.4)"
+        ]
+      },
+      "mark-light": {
+        "role": "primary",
+        "displayName": "Mark Light",
+        "canonical": "#5a9bff",
+        "tonalRamp": [
+          "oklch(15.0% 0.049 258.8)",
+          "oklch(26.4% 0.083 258.8)",
+          "oklch(37.9% 0.112 258.8)",
+          "oklch(49.3% 0.137 258.8)",
+          "oklch(60.7% 0.155 258.8)",
+          "oklch(72.1% 0.157 258.8)",
+          "oklch(83.6% 0.105 258.8)",
+          "oklch(95.0% 0.024 258.8)"
+        ]
+      },
+      "mark-mid": {
+        "role": "primary",
+        "displayName": "Mark Mid",
+        "canonical": "#2f80f6",
+        "tonalRamp": [
+          "oklch(15.0% 0.058 258.5)",
+          "oklch(26.4% 0.105 258.5)",
+          "oklch(37.9% 0.144 258.5)",
+          "oklch(49.3% 0.175 258.5)",
+          "oklch(60.7% 0.193 258.5)",
+          "oklch(72.1% 0.164 258.5)",
+          "oklch(83.6% 0.106 258.5)",
+          "oklch(95.0% 0.029 258.5)"
+        ]
+      },
+      "red": {
+        "role": "status",
+        "displayName": "Overdue Red",
+        "canonical": "#c41d2b",
+        "cssVar": "--red",
+        "tonalRamp": [
+          "oklch(15.0% 0.060 24.2)",
+          "oklch(26.4% 0.117 24.2)",
+          "oklch(37.9% 0.164 24.2)",
+          "oklch(49.3% 0.194 24.2)",
+          "oklch(60.7% 0.185 24.2)",
+          "oklch(72.1% 0.146 24.2)",
+          "oklch(83.6% 0.093 24.2)",
+          "oklch(95.0% 0.030 24.2)"
+        ]
+      },
+      "red-soft": {
+        "role": "status",
+        "displayName": "Red Wash",
+        "canonical": "#fde7ea",
+        "cssVar": "--red-soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 8.2)",
+          "oklch(26.4% 0.011 8.2)",
+          "oklch(37.9% 0.014 8.2)",
+          "oklch(49.3% 0.017 8.2)",
+          "oklch(60.7% 0.020 8.2)",
+          "oklch(72.1% 0.022 8.2)",
+          "oklch(83.6% 0.023 8.2)",
+          "oklch(95.0% 0.004 8.2)"
+        ]
+      },
+      "violet": {
+        "role": "status",
+        "displayName": "Interview Violet",
+        "canonical": "#5b30c4",
+        "cssVar": "--violet",
+        "tonalRamp": [
+          "oklch(15.0% 0.064 288.3)",
+          "oklch(26.4% 0.137 288.3)",
+          "oklch(37.9% 0.192 288.3)",
+          "oklch(49.3% 0.209 288.3)",
+          "oklch(60.7% 0.183 288.3)",
+          "oklch(72.1% 0.142 288.3)",
+          "oklch(83.6% 0.091 288.3)",
+          "oklch(95.0% 0.032 288.3)"
+        ]
+      },
+      "violet-soft": {
+        "role": "status",
+        "displayName": "Violet Wash",
+        "canonical": "#f0eafd",
+        "cssVar": "--violet-soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 300.3)",
+          "oklch(26.4% 0.012 300.3)",
+          "oklch(37.9% 0.015 300.3)",
+          "oklch(49.3% 0.018 300.3)",
+          "oklch(60.7% 0.021 300.3)",
+          "oklch(72.1% 0.023 300.3)",
+          "oklch(83.6% 0.025 300.3)",
+          "oklch(95.0% 0.004 300.3)"
+        ]
+      },
+      "green": {
+        "role": "status",
+        "displayName": "Offer Green",
+        "canonical": "#187a45",
+        "cssVar": "--green",
+        "tonalRamp": [
+          "oklch(15.0% 0.036 153.8)",
+          "oklch(26.4% 0.073 153.8)",
+          "oklch(37.9% 0.101 153.8)",
+          "oklch(49.3% 0.119 153.8)",
+          "oklch(60.7% 0.110 153.8)",
+          "oklch(72.1% 0.087 153.8)",
+          "oklch(83.6% 0.055 153.8)",
+          "oklch(95.0% 0.018 153.8)"
+        ]
+      },
+      "green-soft": {
+        "role": "status",
+        "displayName": "Green Wash",
+        "canonical": "#e7f6ee",
+        "cssVar": "--green-soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 162.9)",
+          "oklch(26.4% 0.008 162.9)",
+          "oklch(37.9% 0.011 162.9)",
+          "oklch(49.3% 0.013 162.9)",
+          "oklch(60.7% 0.015 162.9)",
+          "oklch(72.1% 0.017 162.9)",
+          "oklch(83.6% 0.018 162.9)",
+          "oklch(95.0% 0.019 162.9)"
+        ]
+      },
+      "slate-soft": {
+        "role": "status",
+        "displayName": "Slate Wash",
+        "canonical": "#f1f4f8",
+        "cssVar": "--slate-soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.002 255.5)",
+          "oklch(26.4% 0.003 255.5)",
+          "oklch(37.9% 0.004 255.5)",
+          "oklch(49.3% 0.004 255.5)",
+          "oklch(60.7% 0.005 255.5)",
+          "oklch(72.1% 0.006 255.5)",
+          "oklch(83.6% 0.006 255.5)",
+          "oklch(95.0% 0.006 255.5)"
+        ]
+      },
+      "callout-red": {
+        "role": "status",
+        "displayName": "Callout Red",
+        "canonical": "#fde4e8",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 6.7)",
+          "oklch(26.4% 0.012 6.7)",
+          "oklch(37.9% 0.016 6.7)",
+          "oklch(49.3% 0.020 6.7)",
+          "oklch(60.7% 0.023 6.7)",
+          "oklch(72.1% 0.025 6.7)",
+          "oklch(83.6% 0.027 6.7)",
+          "oklch(95.0% 0.004 6.7)"
+        ]
+      },
+      "callout-red-ink": {
+        "role": "status",
+        "displayName": "Callout Red Ink",
+        "canonical": "#b3121f",
+        "tonalRamp": [
+          "oklch(15.0% 0.057 25.4)",
+          "oklch(26.4% 0.118 25.4)",
+          "oklch(37.9% 0.165 25.4)",
+          "oklch(49.3% 0.190 25.4)",
+          "oklch(60.7% 0.169 25.4)",
+          "oklch(72.1% 0.132 25.4)",
+          "oklch(83.6% 0.085 25.4)",
+          "oklch(95.0% 0.028 25.4)"
+        ]
+      },
+      "callout-blue": {
+        "role": "status",
+        "displayName": "Callout Blue",
+        "canonical": "#e3eefe",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 257.6)",
+          "oklch(26.4% 0.011 257.6)",
+          "oklch(37.9% 0.014 257.6)",
+          "oklch(49.3% 0.017 257.6)",
+          "oklch(60.7% 0.020 257.6)",
+          "oklch(72.1% 0.022 257.6)",
+          "oklch(83.6% 0.024 257.6)",
+          "oklch(95.0% 0.004 257.6)"
+        ]
+      },
+      "callout-violet": {
+        "role": "status",
+        "displayName": "Callout Violet",
+        "canonical": "#ede7fd",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 298.3)",
+          "oklch(26.4% 0.013 298.3)",
+          "oklch(37.9% 0.017 298.3)",
+          "oklch(49.3% 0.021 298.3)",
+          "oklch(60.7% 0.024 298.3)",
+          "oklch(72.1% 0.027 298.3)",
+          "oklch(83.6% 0.029 298.3)",
+          "oklch(95.0% 0.005 298.3)"
+        ]
+      },
+      "callout-violet-ink": {
+        "role": "status",
+        "displayName": "Callout Violet Ink",
+        "canonical": "#4f26b8",
+        "tonalRamp": [
+          "oklch(15.0% 0.063 286.4)",
+          "oklch(26.4% 0.143 286.4)",
+          "oklch(37.9% 0.198 286.4)",
+          "oklch(49.3% 0.201 286.4)",
+          "oklch(60.7% 0.173 286.4)",
+          "oklch(72.1% 0.134 286.4)",
+          "oklch(83.6% 0.086 286.4)",
+          "oklch(95.0% 0.031 286.4)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Cool White Canvas",
+        "canonical": "#fefefe",
+        "cssVar": "--canvas",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0)",
+          "oklch(26.4% 0.000 0)",
+          "oklch(37.9% 0.000 0)",
+          "oklch(49.3% 0.000 0)",
+          "oklch(60.7% 0.000 0)",
+          "oklch(72.1% 0.000 0)",
+          "oklch(83.6% 0.000 0)",
+          "oklch(95.0% 0.000 0)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface White",
+        "canonical": "#ffffff",
+        "cssVar": "--surface",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0)",
+          "oklch(26.4% 0.000 0)",
+          "oklch(37.9% 0.000 0)",
+          "oklch(49.3% 0.000 0)",
+          "oklch(60.7% 0.000 0)",
+          "oklch(72.1% 0.000 0)",
+          "oklch(83.6% 0.000 0)",
+          "oklch(95.0% 0.000 0)"
+        ]
+      },
+      "on-primary": {
+        "role": "neutral",
+        "displayName": "On Primary",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0)",
+          "oklch(26.4% 0.000 0)",
+          "oklch(37.9% 0.000 0)",
+          "oklch(49.3% 0.000 0)",
+          "oklch(60.7% 0.000 0)",
+          "oklch(72.1% 0.000 0)",
+          "oklch(83.6% 0.000 0)",
+          "oklch(95.0% 0.000 0)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#f9fafb",
+        "cssVar": "--surface-2",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0)",
+          "oklch(26.4% 0.000 0)",
+          "oklch(37.9% 0.000 0)",
+          "oklch(49.3% 0.000 0)",
+          "oklch(60.7% 0.000 0)",
+          "oklch(72.1% 0.000 0)",
+          "oklch(83.6% 0.000 0)",
+          "oklch(95.0% 0.000 0)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Navy Ink",
+        "canonical": "#0a1128",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 268.7)",
+          "oklch(26.4% 0.047 268.7)",
+          "oklch(37.9% 0.043 268.7)",
+          "oklch(49.3% 0.038 268.7)",
+          "oklch(60.7% 0.031 268.7)",
+          "oklch(72.1% 0.024 268.7)",
+          "oklch(83.6% 0.016 268.7)",
+          "oklch(95.0% 0.007 268.7)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#4a5672",
+        "cssVar": "--ink-2",
+        "tonalRamp": [
+          "oklch(15.0% 0.015 266.5)",
+          "oklch(26.4% 0.032 266.5)",
+          "oklch(37.9% 0.044 266.5)",
+          "oklch(49.3% 0.048 266.5)",
+          "oklch(60.7% 0.041 266.5)",
+          "oklch(72.1% 0.032 266.5)",
+          "oklch(83.6% 0.021 266.5)",
+          "oklch(95.0% 0.007 266.5)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "canonical": "#5d6984",
+        "cssVar": "--ink-3",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 266.1)",
+          "oklch(26.4% 0.027 266.1)",
+          "oklch(37.9% 0.038 266.1)",
+          "oklch(49.3% 0.045 266.1)",
+          "oklch(60.7% 0.042 266.1)",
+          "oklch(72.1% 0.033 266.1)",
+          "oklch(83.6% 0.021 266.1)",
+          "oklch(95.0% 0.007 266.1)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(15 23 42 / 0.08)",
+        "cssVar": "--line",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 265.8)",
+          "oklch(26.4% 0.039 265.8)",
+          "oklch(37.9% 0.036 265.8)",
+          "oklch(49.3% 0.032 265.8)",
+          "oklch(60.7% 0.026 265.8)",
+          "oklch(72.1% 0.020 265.8)",
+          "oklch(83.6% 0.013 265.8)",
+          "oklch(95.0% 0.006 265.8)"
+        ]
+      },
+      "card-line": {
+        "role": "neutral",
+        "displayName": "Card Hairline",
+        "canonical": "rgb(15 23 42 / 0.09)",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 265.8)",
+          "oklch(26.4% 0.039 265.8)",
+          "oklch(37.9% 0.036 265.8)",
+          "oklch(49.3% 0.032 265.8)",
+          "oklch(60.7% 0.026 265.8)",
+          "oklch(72.1% 0.020 265.8)",
+          "oklch(83.6% 0.013 265.8)",
+          "oklch(95.0% 0.006 265.8)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "rgb(15 23 42 / 0.15)",
+        "cssVar": "--line-strong",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 265.8)",
+          "oklch(26.4% 0.039 265.8)",
+          "oklch(37.9% 0.036 265.8)",
+          "oklch(49.3% 0.032 265.8)",
+          "oklch(60.7% 0.026 265.8)",
+          "oklch(72.1% 0.020 265.8)",
+          "oklch(83.6% 0.013 265.8)",
+          "oklch(95.0% 0.006 265.8)"
+        ]
+      },
+      "haze": {
+        "role": "neutral",
+        "displayName": "Azure Haze",
+        "canonical": "rgb(196 218 252 / 0.85)",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 259.0)",
+          "oklch(26.4% 0.024 259.0)",
+          "oklch(37.9% 0.032 259.0)",
+          "oklch(49.3% 0.038 259.0)",
+          "oklch(60.7% 0.044 259.0)",
+          "oklch(72.1% 0.049 259.0)",
+          "oklch(83.6% 0.052 259.0)",
+          "oklch(95.0% 0.008 259.0)"
+        ]
+      },
+      "window-rim": {
+        "role": "neutral",
+        "displayName": "Window Rim",
+        "canonical": "rgb(237 243 253 / 0.62)",
+        "tonalRamp": [
+          "oklch(15.0% 0.004 260.7)",
+          "oklch(26.4% 0.007 260.7)",
+          "oklch(37.9% 0.009 260.7)",
+          "oklch(49.3% 0.010 260.7)",
+          "oklch(60.7% 0.012 260.7)",
+          "oklch(72.1% 0.013 260.7)",
+          "oklch(83.6% 0.014 260.7)",
+          "oklch(95.0% 0.015 260.7)"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#0a1128",
+        "cssVar": "--night",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 268.7)",
+          "oklch(26.4% 0.047 268.7)",
+          "oklch(37.9% 0.043 268.7)",
+          "oklch(49.3% 0.038 268.7)",
+          "oklch(60.7% 0.031 268.7)",
+          "oklch(72.1% 0.024 268.7)",
+          "oklch(83.6% 0.016 268.7)",
+          "oklch(95.0% 0.007 268.7)"
+        ]
+      },
+      "on-night": {
+        "role": "neutral",
+        "displayName": "On Night",
+        "canonical": "#f4f6fb",
+        "cssVar": "--on-night",
+        "tonalRamp": [
+          "oklch(15.0% 0.002 268.5)",
+          "oklch(26.4% 0.003 268.5)",
+          "oklch(37.9% 0.004 268.5)",
+          "oklch(49.3% 0.005 268.5)",
+          "oklch(60.7% 0.006 268.5)",
+          "oklch(72.1% 0.006 268.5)",
+          "oklch(83.6% 0.007 268.5)",
+          "oklch(95.0% 0.007 268.5)"
+        ]
+      },
+      "night-accent": {
+        "role": "neutral",
+        "displayName": "Night Accent",
+        "canonical": "#9cc1ff",
+        "tonalRamp": [
+          "oklch(15.0% 0.029 260.5)",
+          "oklch(26.4% 0.046 260.5)",
+          "oklch(37.9% 0.061 260.5)",
+          "oklch(49.3% 0.075 260.5)",
+          "oklch(60.7% 0.086 260.5)",
+          "oklch(72.1% 0.094 260.5)",
+          "oklch(83.6% 0.090 260.5)",
+          "oklch(95.0% 0.015 260.5)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero promise only, on one line.",
+        "canonical": "calc(72 * var(--u)); clamp(2.35rem, 8vw, 3.9rem) below 1024px"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Centered section titles; the closing panel title runs to 3.6rem.",
+        "canonical": "clamp(2.1rem, 4.4vw, 3.4rem)"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and step titles; list titles inside cards drop to 1.125rem at -0.015em."
+      },
+      "hero-lede": {
+        "displayName": "Hero Lede",
+        "purpose": "The single Slate line under the display.",
+        "canonical": "calc(24.2 * var(--u)); clamp(1.0625rem, 2.6vw, 1.25rem) below 1024px"
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Slate text under section titles, at most 38rem wide."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text; card copy sets at 1rem."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "The footer, the availability note, and nav links at their floor."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Button labels; the header demo button is the one regular-weight label."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tags, pills, and badges in sentence case; vignette pills use 0.75rem."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Companies, dates, and times under a row title, in Muted Slate with tabular numerals."
+      }
+    },
+    "spacingMeta": {
+      "card": {
+        "canonical": "1.75rem; 1.25rem to 1.35rem on phones"
+      },
+      "gutter": {
+        "canonical": "clamp(1.25rem, 4vw, 2.5rem)"
+      },
+      "section-head": {
+        "canonical": "clamp(2.5rem, 6vw, 4rem)"
+      },
+      "section": {
+        "canonical": "clamp(5rem, 10vw, 8.5rem)"
+      }
+    },
+    "shadows": [
+      {
+        "name": "window-lift",
+        "value": "0 1px 2px rgb(15 23 42 / 0.04), 0 24px 60px -24px rgb(23 61 140 / 0.26), 0 60px 120px -48px rgb(15 23 42 / 0.2)",
+        "purpose": "The app window only; its long, blue-tinged falloff seats the window in the haze (--shadow-lg)."
+      },
+      {
+        "name": "callout-lift",
+        "value": "0 1px 2px rgb(15 23 42 / 0.06), 0 10px 24px -12px rgb(15 23 42 / 0.22)",
+        "purpose": "Annotation callouts and their phone row notes."
+      },
+      {
+        "name": "primary-glow",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 2px rgb(15 23 42 / 0.16), 0 10px 24px -12px rgb(23 111 240 / 0.75)",
+        "purpose": "Primary buttons; the header's button drops it."
+      },
+      {
+        "name": "hairline-lift",
+        "value": "0 1px 2px rgb(15 23 42 / 0.06)",
+        "purpose": "Secondary buttons (--shadow-sm)."
+      },
+      {
+        "name": "next-step-pulse",
+        "value": "0 0 0 calc(2 * var(--u)) rgb(23 111 240 / 0.6), 0 calc(10 * var(--u)) calc(28 * var(--u)) calc(-12 * var(--u)) rgb(23 111 240 / 0.55)",
+        "purpose": "Rings today's row once on load (opacity 0 to 1 to 0), then rests invisible."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Default easing for entrances, presses, and transforms (--ease-out)."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "The next-step pulse (--ease-in-out)."
+      },
+      {
+        "name": "press",
+        "value": "160ms ease-out, scale(0.97)",
+        "purpose": "Every button on :active; dropped under reduced motion."
+      },
+      {
+        "name": "state-color",
+        "value": "200ms ease",
+        "purpose": "Background, border, and color changes; nav and footer links use 160ms."
+      },
+      {
+        "name": "rise",
+        "value": "640ms ease-out, translateY(14px) and opacity, 80ms stagger",
+        "purpose": "Hero copy and inner-page titles entering (.reveal)."
+      },
+      {
+        "name": "window-in",
+        "value": "900ms ease-out, 260ms delay, translateY(32 comp px) scale(0.985)",
+        "purpose": "The app window landing."
+      },
+      {
+        "name": "callout-in",
+        "value": "520ms ease-out, translateX(12 comp px) from its side, 880/980/1080ms delays",
+        "purpose": "Callouts sliding in."
+      },
+      {
+        "name": "arrow-draw",
+        "value": "560ms ease-out, clip-path inset, 1000/1100/1200ms delays",
+        "purpose": "Each hand-drawn arrow drawing toward its row."
+      },
+      {
+        "name": "next-pulse",
+        "value": "1800ms ease-in-out, 1350ms delay",
+        "purpose": "One blue ring on today's row, fading to nothing."
+      },
+      {
+        "name": "header-line",
+        "value": "scroll-driven opacity over the first 96px",
+        "purpose": "The header hairline fading in where scroll timelines exist; visible otherwise."
+      },
+      {
+        "name": "faq-toggle",
+        "value": "200ms ease-out, rotate(45deg)",
+        "purpose": "The FAQ plus turning into a cross."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "200ms fade",
+        "purpose": "Replaces every entrance under prefers-reduced-motion; all elements rest finished."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "comp-cap",
+        "value": "1920px"
+      },
+      {
+        "name": "comp",
+        "value": "1586px"
+      },
+      {
+        "name": "hero-reflow",
+        "value": "1023px"
+      },
+      {
+        "name": "sections-stack",
+        "value": "860px"
+      },
+      {
+        "name": "header-compact",
+        "value": "760px"
+      },
+      {
+        "name": "bento-single",
+        "value": "700px"
+      },
+      {
+        "name": "card-compact",
+        "value": "480px"
+      },
+      {
+        "name": "rows-stack",
+        "value": "440px"
+      },
+      {
+        "name": "header-minimal",
+        "value": "420px"
+      },
+      {
+        "name": "minimum",
+        "value": "320px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one solid action: Action Blue with the primary glow, a press scale, and an arrow that nudges on fine-pointer hover.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Create your workspace<svg class=\"ds-btn-primary-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; min-height: 3rem; padding: 0.75rem 1.4rem; border: 1px solid transparent; border-radius: 10px; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 1.0625rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease, border-color 200ms ease, color 200ms ease; } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 3px solid var(--blue, #176ff0); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-btn-primary:active { transform: none; } } .ds-btn-primary { background: var(--blue, #176ff0); color: #fff; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 2px rgb(15 23 42 / 0.16), 0 10px 24px -12px rgb(23 111 240 / 0.75); } .ds-btn-primary-arrow { width: 1.15em; height: 1.15em; transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } @media (hover: hover) and (pointer: fine) { .ds-btn-primary:hover { background: var(--blue-strong, #0f5bd0); } .ds-btn-primary:hover .ds-btn-primary-arrow { transform: translateX(3px); } } @media (prefers-reduced-motion: reduce) { .ds-btn-primary:hover .ds-btn-primary-arrow { transform: none; } }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The quiet companion to the primary action: white, a strong hairline, and a hairline lift.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Try the demo</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; min-height: 3rem; padding: 0.75rem 1.4rem; border: 1px solid transparent; border-radius: 10px; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 1.0625rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease, border-color 200ms ease, color 200ms ease; } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { outline: 3px solid var(--blue, #176ff0); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-btn-secondary:active { transform: none; } } .ds-btn-secondary { border-color: var(--line-strong, rgb(15 23 42 / 0.15)); background: var(--surface, #fff); color: var(--ink, #0a1128); box-shadow: 0 1px 2px rgb(15 23 42 / 0.06); } @media (hover: hover) and (pointer: fine) { .ds-btn-secondary:hover { border-color: rgb(15 23 42 / 0.32); } }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "button-header",
+      "description": "Wordmark left, three links centered, the demo button right, over a strong hairline; sized here at the comp width.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-header-brand\" href=\"#\" aria-label=\"NextStep home\"><svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><rect x=\"4\" y=\"38\" width=\"24\" height=\"20\" rx=\"2.5\" fill=\"#5A9BFF\"/><rect x=\"20\" y=\"22\" width=\"24\" height=\"20\" rx=\"2.5\" fill=\"#2F80F6\"/><rect x=\"36\" y=\"6\" width=\"24\" height=\"20\" rx=\"2.5\" fill=\"#176FF0\"/></svg><span>NextStep</span></a><nav class=\"ds-header-nav\" aria-label=\"Primary\"><a href=\"#\" aria-current=\"page\">Features</a><a href=\"#\">How it works</a><a href=\"#\">FAQ</a></nav><a class=\"ds-header-cta\" href=\"#\">Try the demo</a></header>",
+      "css": ".ds-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 73px; padding: 0 1.25rem; border-bottom: 1px solid var(--line-strong, rgb(15 23 42 / 0.15)); background: var(--canvas, #fefefe); font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; } .ds-header-brand { justify-self: start; display: inline-flex; align-items: center; gap: 0.5em; border-radius: 8px; color: var(--ink, #0a1128); font-size: 29px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; } .ds-header-brand svg { width: 34px; height: 34px; flex-shrink: 0; } .ds-header-nav { display: flex; align-items: center; gap: 52px; } .ds-header-nav a { padding-block: 0.4em; color: var(--ink-2, #4a5672); font-size: 17px; text-decoration: none; transition: color 160ms ease; } .ds-header-nav a[aria-current=\"page\"] { color: var(--ink, #0a1128); font-weight: 700; } .ds-header-cta { justify-self: end; display: inline-flex; align-items: center; min-height: 42px; padding: 0 21px; border-radius: 12px; background: var(--blue, #176ff0); color: #fff; font-size: 17.5px; font-weight: 400; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease; } .ds-header-cta:active { transform: scale(0.97); } .ds-header a:focus-visible { outline: 3px solid var(--blue, #176ff0); outline-offset: 3px; border-radius: 6px; } @media (hover: hover) and (pointer: fine) { .ds-header-nav a:hover { color: var(--ink, #0a1128); } .ds-header-cta:hover { background: var(--blue-strong, #0f5bd0); } }"
+    },
+    {
+      "name": "Status Tags",
+      "kind": "chip",
+      "refersTo": "tag-red",
+      "description": "Pill labels in the shared status pairs: a wash with its own ink, bold sentence case. Labels, never controls.",
+      "html": "<div class=\"ds-tags\"><span class=\"ds-tag ds-tag-red\">Today</span><span class=\"ds-tag ds-tag-violet\">Interview</span><span class=\"ds-tag ds-tag-blue\">Thu</span><span class=\"ds-tag ds-tag-green\">Offer</span><span class=\"ds-tag ds-tag-slate\">Fri</span></div>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; } .ds-tag { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8125rem; font-weight: 700; line-height: 1.6; white-space: nowrap; } .ds-tag-red { background: var(--red-soft, #fde7ea); color: var(--red, #c41d2b); } .ds-tag-violet { background: var(--violet-soft, #f0eafd); color: var(--violet, #5b30c4); } .ds-tag-blue { background: var(--blue-soft, #e8f0fe); color: var(--blue-ink, #1252c9); } .ds-tag-green { background: var(--green-soft, #e7f6ee); color: var(--green, #187a45); } .ds-tag-slate { background: var(--slate-soft, #f1f4f8); color: var(--ink-2, #4a5672); }"
+    },
+    {
+      "name": "Sorted List Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A hairline card holding a faithful picture of the app: ranked rows, the first in Blue Wash with an Action Blue rank, each ending in a status tag.",
+      "html": "<figure class=\"ds-sorted\"><figcaption class=\"ds-sorted-head\"><span>Sorted by what’s due</span><span class=\"ds-sorted-note\">Fictional examples</span></figcaption><ol class=\"ds-sorted-list\"><li class=\"ds-sorted-row ds-sorted-first\"><span class=\"ds-sorted-rank\">1</span><span class=\"ds-sorted-text\"><b>Send a thank-you note to Mara</b><span>Today · 5:00 PM · Harbor Labs</span></span><span class=\"ds-sorted-tag ds-sorted-red\">Today</span></li><li class=\"ds-sorted-row\"><span class=\"ds-sorted-rank\">2</span><span class=\"ds-sorted-text\"><b>Technical interview with Jun Navarro</b><span>Tue · 10:00 AM New York · 11:00 PM yours</span></span><span class=\"ds-sorted-tag ds-sorted-violet\">Interview</span></li><li class=\"ds-sorted-row\"><span class=\"ds-sorted-rank\">3</span><span class=\"ds-sorted-text\"><b>Follow up with Northwind Studio</b><span>Thu · Product Designer</span></span><span class=\"ds-sorted-tag ds-sorted-blue\">Thu</span></li></ol></figure>",
+      "css": ".ds-sorted { margin: 0; padding: 1.6rem 1.75rem; border: 1px solid rgb(15 23 42 / 0.09); border-radius: 16px; background: var(--surface, #fff); color: var(--ink, #0a1128); font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.6; } .ds-sorted-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; } .ds-sorted-note { color: var(--ink-3, #5d6984); font-size: 0.8125rem; font-weight: 400; letter-spacing: 0; } .ds-sorted-list { display: grid; gap: 0.625rem; margin: 1.1rem 0 0; padding: 0; list-style: none; } .ds-sorted-row { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.9rem; align-items: center; padding: 0.85rem 1rem; border: 1px solid rgb(15 23 42 / 0.09); border-radius: 12px; } .ds-sorted-first { border-color: rgb(23 111 240 / 0.35); background: linear-gradient(rgb(232 240 254 / 0.55), rgb(232 240 254 / 0.55)), var(--surface, #fff); } .ds-sorted-rank { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--slate-soft, #f1f4f8); color: var(--ink-2, #4a5672); font-size: 0.875rem; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-sorted-first .ds-sorted-rank { background: var(--blue, #176ff0); color: #fff; } .ds-sorted-text { display: flex; flex-direction: column; min-width: 0; } .ds-sorted-text b { font-weight: 700; line-height: 1.35; } .ds-sorted-text span { color: var(--ink-3, #5d6984); font-size: 0.875rem; line-height: 1.4; font-variant-numeric: tabular-nums; } .ds-sorted-tag { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8125rem; font-weight: 700; white-space: nowrap; } .ds-sorted-red { background: var(--red-soft, #fde7ea); color: var(--red, #c41d2b); } .ds-sorted-violet { background: var(--violet-soft, #f0eafd); color: var(--violet, #5b30c4); } .ds-sorted-blue { background: var(--blue-soft, #e8f0fe); color: var(--blue-ink, #1252c9); }"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Native details rows at 14px; the plus turns into a blue cross and the edge takes Blue Line when open.",
+      "html": "<div class=\"ds-faq\"><details class=\"ds-faq-item\" open><summary class=\"ds-faq-q\">How does it handle time zones?<svg class=\"ds-faq-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p class=\"ds-faq-a\">Each task keeps the time zone it was created in, so a 5:00 PM follow-up stays 5:00 PM where you set it.</p></details><details class=\"ds-faq-item\"><summary class=\"ds-faq-q\">Can I take my data with me?<svg class=\"ds-faq-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p class=\"ds-faq-a\">Yes. Download everything as a JSON file from settings.</p></details></div>",
+      "css": ".ds-faq { display: grid; gap: 0.75rem; color: var(--ink, #0a1128); font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.6; } .ds-faq-item { border: 1px solid rgb(15 23 42 / 0.09); border-radius: 14px; background: var(--surface, #fff); transition: border-color 200ms ease; } .ds-faq-item[open] { border-color: rgb(23 111 240 / 0.3); } .ds-faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 14px; font-weight: 700; list-style: none; cursor: pointer; } .ds-faq-q::-webkit-details-marker { display: none; } .ds-faq-q:focus-visible { outline: 3px solid var(--blue, #176ff0); outline-offset: 3px; } .ds-faq-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: var(--ink-3, #5d6984); transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), color 200ms ease; } .ds-faq-item[open] .ds-faq-icon { color: var(--blue, #176ff0); transform: rotate(45deg); } .ds-faq-a { margin: 0; padding: 0 1.25rem 1.2rem; color: var(--ink-2, #4a5672); } @media (prefers-reduced-motion: reduce) { .ds-faq-icon { transition: color 200ms ease; } }"
+    },
+    {
+      "name": "Annotated Row",
+      "kind": "custom",
+      "refersTo": "callout-blue",
+      "description": "A dashboard row from the app window with its callout, at comp pixels: the callout slides in and one blue ring pulses on today's row, then both rest finished. The hand-drawn arrow is a raster plate and is not reproduced here.",
+      "html": "<div class=\"ds-annot\"><span class=\"ds-annot-callout\">Your next step</span><div class=\"ds-annot-row\"><span class=\"ds-annot-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"m8.5 12.2 2.4 2.4 4.6-4.9\"/></svg></span><span class=\"ds-annot-label\">Due today</span><span class=\"ds-annot-main\"><b>Prepare a portfolio walkthrough</b><span>Harbor Labs</span></span><span class=\"ds-annot-meta\"><span class=\"ds-annot-badge\">Your next step</span><span>Due today</span></span></div></div>",
+      "css": ".ds-annot { position: relative; padding-top: 58px; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; } .ds-annot-callout { position: absolute; top: 0; right: 0; z-index: 2; display: inline-flex; align-items: center; height: 46px; padding: 0 12px; border-radius: 10px; background: #e3eefe; color: var(--blue-ink, #1252c9); font-size: 15.2px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; white-space: nowrap; box-shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 10px 24px -12px rgb(15 23 42 / 0.22); } .ds-annot-row { position: relative; display: grid; grid-template-columns: 46px auto minmax(0, 1fr) auto; align-items: center; column-gap: 14px; min-height: 72px; padding: 0 24px 0 12px; border: 1px solid rgb(15 23 42 / 0.09); border-radius: 10px; background: #fff; } .ds-annot-row::after { content: \"\"; position: absolute; inset: -1px; border-radius: inherit; box-shadow: 0 0 0 2px rgb(23 111 240 / 0.6), 0 10px 28px -12px rgb(23 111 240 / 0.55); opacity: 0; pointer-events: none; } .ds-annot-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--blue-soft, #e8f0fe); color: var(--blue-ink, #1252c9); } .ds-annot-icon svg { width: 22px; height: 22px; } .ds-annot-label { align-self: start; margin-top: 13px; color: var(--blue, #176ff0); font-size: 13.6px; line-height: 20px; } .ds-annot-main { display: flex; flex-direction: column; min-width: 0; } .ds-annot-main b { color: var(--ink, #0a1128); font-size: 17.2px; font-weight: 400; line-height: 24px; } .ds-annot-main span { color: var(--ink-3, #5d6984); font-size: 14.3px; line-height: 20px; } .ds-annot-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; color: var(--ink-3, #5d6984); font-size: 13.9px; line-height: 20px; white-space: nowrap; } .ds-annot-badge { padding: 0 13px; border-radius: 999px; background: #e3eefe; color: var(--blue-ink, #1252c9); font-size: 12.8px; line-height: 23px; } @media (prefers-reduced-motion: no-preference) { .ds-annot-callout { animation: ds-callout-in 520ms cubic-bezier(0.23, 1, 0.32, 1) 200ms both; } .ds-annot-row::after { animation: ds-next-pulse 1800ms cubic-bezier(0.77, 0, 0.175, 1) 600ms both; } } @keyframes ds-callout-in { from { opacity: 0; transform: translateX(12px); } } @keyframes ds-next-pulse { 35% { opacity: 1; } 100% { opacity: 0; } }"
+    },
+    {
+      "name": "Night Panel",
+      "kind": "card",
+      "refersTo": "night-panel",
+      "description": "The closing call to action: Night at 24px, a pool of azure light from the top, an On Night headline with one Night Accent word, and the two buttons.",
+      "html": "<section class=\"ds-night\"><h2 class=\"ds-night-title\">Make space for the <em>next</em> opportunity.</h2><div class=\"ds-night-ctas\"><a class=\"ds-night-primary\" href=\"#\">Create your workspace<svg class=\"ds-night-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a><a class=\"ds-night-secondary\" href=\"#\">Try the demo</a></div></section>",
+      "css": ".ds-night { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem); border-radius: 24px; background: var(--night, #0a1128); color: var(--on-night, #f4f6fb); text-align: center; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; } .ds-night::before { content: \"\"; position: absolute; z-index: -1; top: -18rem; left: 50%; width: 32rem; height: 32rem; border-radius: 50%; translate: -50% 0; background: radial-gradient(closest-side, rgb(23 111 240 / 0.45), transparent); pointer-events: none; } .ds-night-title { max-width: 40rem; margin: 0; font-size: clamp(2.1rem, 4.6vw, 3.6rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; text-wrap: balance; } .ds-night-title em { font-style: normal; color: #9cc1ff; } .ds-night-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; } .ds-night-primary, .ds-night-secondary { display: inline-flex; align-items: center; gap: 0.55rem; min-height: 3rem; padding: 0.75rem 1.4rem; border: 1px solid transparent; border-radius: 10px; font-size: 1.0625rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease, border-color 200ms ease; } .ds-night-primary { background: var(--blue, #176ff0); color: #fff; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 2px rgb(15 23 42 / 0.16), 0 10px 24px -12px rgb(23 111 240 / 0.75); } .ds-night-arrow { width: 1.15em; height: 1.15em; } .ds-night-secondary { border-color: rgb(244 246 251 / 0.28); background: rgb(244 246 251 / 0.06); color: var(--on-night, #f4f6fb); } .ds-night-primary:active, .ds-night-secondary:active { transform: scale(0.97); } .ds-night a:focus-visible { outline: 3px solid #9cc1ff; outline-offset: 3px; } @media (hover: hover) and (pointer: fine) { .ds-night-primary:hover { background: var(--blue-strong, #0f5bd0); } .ds-night-secondary:hover { border-color: var(--on-night, #f4f6fb); } } @media (prefers-reduced-motion: reduce) { .ds-night-primary:active, .ds-night-secondary:active { transform: none; } }"
+    },
+    {
+      "name": "Steps",
+      "kind": "custom",
+      "refersTo": "step-numeral",
+      "description": "Three numbered steps on one hairline that brightens to blue in the middle; the last numeral fills Action Blue.",
+      "html": "<ol class=\"ds-steps\"><li class=\"ds-step\"><span class=\"ds-step-num\" aria-hidden=\"true\">1</span><h3>Save an opportunity</h3><p>Add the company and role. Fill in the link, salary, or contact whenever you have them.</p></li><li class=\"ds-step\"><span class=\"ds-step-num\" aria-hidden=\"true\">2</span><h3>Add the next action</h3><p>A follow-up, a take-home deadline, or an interview, each tied to its application.</p></li><li class=\"ds-step\"><span class=\"ds-step-num\" aria-hidden=\"true\">3</span><h3>Return to a clear dashboard</h3><p>See what’s overdue, what’s due this week, and which interviews are coming up.</p></li></ol>",
+      "css": ".ds-steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.6; } .ds-steps::before { content: \"\"; position: absolute; top: 1.375rem; right: 16%; left: 16%; height: 1px; background: linear-gradient(90deg, rgb(23 111 240 / 0.05), rgb(23 111 240 / 0.35), rgb(23 111 240 / 0.05)); } .ds-step { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 0 1rem; text-align: center; } .ds-step-num { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-bottom: 0.75rem; border: 1px solid rgb(23 111 240 / 0.25); border-radius: 12px; background: var(--blue-soft, #e8f0fe); color: var(--blue-ink, #1252c9); font-size: 1.0625rem; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-step:last-child .ds-step-num { border-color: var(--blue, #176ff0); background: var(--blue, #176ff0); color: #fff; } .ds-step h3 { margin: 0; color: var(--ink, #0a1128); font-size: 1.25rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; } .ds-step p { max-width: 19rem; margin: 0; color: var(--ink-2, #4a5672); }"
+    },
+    {
+      "name": "Availability Note",
+      "kind": "custom",
+      "refersTo": "availability-note",
+      "description": "Shown in place of the buttons while the app and demo addresses are unconfigured: a plain statement, never a pretend button.",
+      "html": "<p class=\"ds-note\"><strong>Not publicly hosted yet.</strong> NextStep is in active development as a portfolio project. Links to create a workspace or try the demo will appear here once the app is online.</p>",
+      "css": ".ds-note { max-width: 34rem; margin: 0; padding: 0.9rem 1.1rem; border: 1px solid var(--line-strong, rgb(15 23 42 / 0.15)); border-radius: 12px; background: var(--surface, #fff); color: var(--ink-2, #4a5672); font-family: var(--font-sans, \"Atkinson Hyperlegible\"), \"Segoe UI\", system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.6; text-align: left; } .ds-note strong { color: var(--ink, #0a1128); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Annotated Dashboard",
+    "overview": "NextStep's website is the category-standard product page, played straight and finished to the bar that Linear, Raycast, and Vercel set. A centered promise sits over a faithful, fictional picture of the app's own dashboard, and the only commentary is a set of hand-drawn callouts pointing at the rows that prove the mechanism: overdue comes first, today's task is the next step, and an interview keeps its own time zone. The product makes the case; the page frames it and stays out of the way.\n\nThe world is cool and quiet: a near-white canvas under a faint azure haze, navy ink, slate text, and one confident blue for every action. Color beyond that blue is status, borrowed from the app with the meaning the app gives it, so the sections below the hero speak the same visual language as the dashboard picture. Density splits by layer. The page is spacious, with centered section heads and a generous vertical rhythm; the product pictures inside it (the app window, the card vignettes, the sorted list) are as dense and specific as the real app.\n\nThe direction refuses the split hero beside a tilted screenshot with a badge row, and any costume world. One humane, highly legible face carries everything, surfaces are white and defined by hairlines, and the app window is the only object that lifts off the page.",
+    "keyCharacteristics": [
+      "One face, Atkinson Hyperlegible, at 400 and 700, for headings, text, and controls.",
+      "Navy ink, slate text, and a single action blue; red, violet, green, blue, and slate washes are status, shared with the app.",
+      "White surfaces at 10–16px corners, defined by 1px navy hairlines instead of shadows.",
+      "The app window is the one lifted object: a frosted azure rim over a soft haze.",
+      "Hand-drawn callout arrows, shipped as raster plates, are the only illustration.",
+      "The first viewport is measured in pixels of the approved comp and keeps its proportions at every desktop width.",
+      "One authored load moment; everything else is small, interruptible state feedback, and every element rests finished."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "There is one accent family. Action Blue fills, Blue Ink writes, and Blue Wash tints; no other accent hue exists outside the status set.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shared Status Rule",
+        "body": "A status color means what it means in the app: red is overdue or most urgent, violet is interviews and time zones, green is offers and finished work, blue is due next or upcoming, and slate is neutral or later. A status always appears as a wash with its own ink; only Action Blue fills solid behind text.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "Atkinson Hyperlegible at 400 and 700 is the only face and the only pair of weights. Hierarchy comes from size, weight, and ink, never from a second family or an in-between weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Accent Word Rule",
+        "body": "A heading may set one word in Blue Ink, in the same upright face with no underline: \"know\" in \"Good to know\", \"next\" in \"Make space for the next opportunity\", \"today\" in \"What NextStep does today\". On the night panel that word turns Night Accent.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence Case Rule",
+        "body": "Labels, tags, and buttons are bold sentence case. Nothing is uppercase, and no text is tracked wider than normal.",
+        "section": "typography"
+      },
+      {
+        "name": "The Comp Unit Rule",
+        "body": "The first viewport is measured, not approximated. Size its parts in comp pixels with rem floors for text, and use rem and clamp() below 1024px and everywhere under the hero.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Lifted Object Rule",
+        "body": "Only the app window casts a wide shadow. Cards declare elevation once, with their hairline, and never lift on hover.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Only Illustration Rule",
+        "body": "The hand-drawn callout arrows are the only illustration, and they ship as raster plates with their provenance embedded. Everything else is the product drawn faithfully, a line icon, or plain geometry.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep Atkinson Hyperlegible at 400 and 700 as the only face and weights.",
+      "Do size the first viewport in comp pixels (calc(N * var(--u))) with rem floors for text, and use rem and clamp() below 1024px and under the hero.",
+      "Do give anything with a state its shared status pair, a wash with its own ink, in the meaning the app uses.",
+      "Do let faithful, fictional pictures of the app carry the proof, with the app's real stage names and menus and fictional companies and people.",
+      "Do define cards with a 1px Card Hairline at 16px on Surface White, and keep the wide shadow for the app window.",
+      "Do track display and headline type at -0.035em; nothing in the system tracks tighter.",
+      "Do theme the browser's own surfaces from the palette: a 20% Action Blue selection, a blue caret and accent color, a 28% navy scrollbar thumb, the 3px blue focus ring, and tabular numerals for times and dates.",
+      "Do animate only transform, opacity, and clip-path from a finished resting state, keep interface feedback under 300ms, and put hover effects behind a fine-pointer query.",
+      "Do ship hand-drawn arrows as raster plates in assets/plates with their provenance embedded."
+    ],
+    "donts": [
+      "Don't build a split hero beside a tilted screenshot with a badge row, or dress the page in a costume world.",
+      "Don't put a kicker or eyebrow label above a heading; the heading speaks alone.",
+      "Don't set labels in uppercase or track small text open.",
+      "Don't add a second accent hue, gradient text, or gradient fills on controls and cards; the only gradients are light (the azure haze and the night panel's pool) and the hairline that joins the steps.",
+      "Don't put a wide soft shadow under a hairline card, or lift a card on hover.",
+      "Don't lead a card with an icon tile above its heading; the title leads, and the picture inside the card proves it.",
+      "Don't use Unicode glyphs or emoji as icons; use the drawn 24px line set.",
+      "Don't swap the arrow plates for inline vector strokes or an arrow icon.",
+      "Don't fill a status color solid behind text; only Action Blue fills solid.",
+      "Don't let text rest at partial opacity or depend on an entrance animation to appear."
+    ]
+  }
+}

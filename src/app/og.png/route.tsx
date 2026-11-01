@@ -16,16 +16,16 @@ export function GET() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#0A1F1A",
-          backgroundImage: "linear-gradient(150deg, #0A1F1A 0%, #0D2A23 55%, #17614F 140%)",
-          color: "#F3F1EA",
+          background: "#0A1128",
+          backgroundImage: "linear-gradient(150deg, #0A1128 0%, #0E1C44 60%, #176FF0 150%)",
+          color: "#F4F6FB",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 40, fontWeight: 700, letterSpacing: -1 }}>
           <svg width="56" height="56" viewBox="0 0 64 64">
-            <rect width="64" height="64" rx="16" fill="#17614F" />
-            <path d="M15 45h12V33h12V21h9" stroke="#F6F5F0" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="48" cy="21" r="5.5" fill="#E8B04A" />
+            <rect x="4" y="38" width="24" height="20" rx="2.5" fill="#5A9BFF" />
+            <rect x="20" y="22" width="24" height="20" rx="2.5" fill="#2F80F6" />
+            <rect x="36" y="6" width="24" height="20" rx="2.5" fill="#176FF0" />
           </svg>
           NextStep
         </div>
@@ -33,8 +33,8 @@ export function GET() {
           <div style={{ fontSize: 96, fontWeight: 700, lineHeight: 1.02, letterSpacing: -4, maxWidth: 980 }}>
             Keep your job search moving.
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 32, color: "#A7BBB3" }}>
-            <div style={{ width: 16, height: 16, borderRadius: 999, background: "#E8B04A" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 32, color: "#AAB4CA" }}>
+            <div style={{ width: 16, height: 16, borderRadius: 999, background: "#176FF0" }} />
             Applications, follow-ups, and interviews in one clear workspace.
           </div>
         </div>

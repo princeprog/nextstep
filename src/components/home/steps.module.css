@@ -1,0 +1,70 @@
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  list-style: none;
+}
+
+/* A hairline joins the three numbers. */
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 1.375rem;
+  right: 16%;
+  left: 16%;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(23 111 240 / 0.05), rgb(23 111 240 / 0.35), rgb(23 111 240 / 0.05));
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgb(23 111 240 / 0.25);
+  border-radius: 12px;
+  background: var(--blue-soft);
+  color: var(--blue-ink);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.step:last-child .num {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.title {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.text {
+  max-width: 19rem;
+  color: var(--ink-2);
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .steps::before {
+    display: none;
+  }
+}
+

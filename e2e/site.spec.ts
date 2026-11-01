@@ -57,18 +57,18 @@ test("pages load without console errors or failed requests, including the router
 test("pages pass automated accessibility checks", async ({ page }) => {
   for (const path of ["/", "/features/", "/privacy/", "/terms/", "/no-such-page/"]) {
     await page.goto(path)
-    await page.waitForTimeout(1800) // let the entrance (the home page's hero explanation runs about 1.5 s) finish before measuring contrast
+    await page.waitForTimeout(1800) // let the entrance (the home page's hero text settles in about 1.6 s) finish before measuring contrast
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze()
     expect(results.violations, path).toEqual([])
   }
 })
 
-test("the home page's scroll stories pass accessibility checks in their finished state", async ({ page }) => {
-  // At the top of the page, scenes further down wait in their starting state, and axe can't measure contrast off
-  // screen. With reduced motion every scene rests in its finished state; each section is scanned while it's in view.
+test("every home page section passes accessibility checks while it's in view", async ({ page }) => {
+  // axe can't measure contrast off screen, so each section is scanned while it's in view. With reduced motion the hero
+  // rests in its finished state from the start.
   await page.emulateMedia({ reducedMotion: "reduce" })
   await page.goto("/")
-  for (const heading of ["hero-title", "sort-title", "stories-title", "how-title", "hood-title", "faq-title", "closing-title"]) {
+  for (const heading of ["hero-title", "why-title", "features-title", "how-title", "hood-title", "faq-title", "closing-title"]) {
     await page.locator("#" + heading).scrollIntoViewIfNeeded()
     await page.waitForTimeout(200)
     const results = await new AxeBuilder({ page })

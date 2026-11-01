@@ -43,7 +43,7 @@ test("the header demo button keeps its compact style, and pages fit 320 px", asy
       const root = parseFloat(getComputedStyle(document.documentElement).fontSize)
       return { fontSize: parseFloat(computed.fontSize) / root, minHeight: parseFloat(computed.minHeight) / root }
     })
-  expect(style.fontSize).toBeCloseTo(0.9, 2)
+  expect(style.fontSize).toBeCloseTo(0.9375, 2)
   expect(style.minHeight).toBeCloseTo(2.5, 2)
   await page.setViewportSize({ width: 320, height: 740 })
   for (const path of PATHS) {

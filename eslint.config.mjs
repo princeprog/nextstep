@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     "playwright-report/**",
     "test-results/**",
     "lighthouse-reports/**",
+    // impeccable's local working files (build state, review captures and snapshots, helper scripts).
+    ".impeccable/**",
   ]),
 ]);
 

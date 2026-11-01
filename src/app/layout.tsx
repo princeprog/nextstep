@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Instrument_Sans } from "next/font/google"
+import { Atkinson_Hyperlegible } from "next/font/google"
 
 // Global base styles load before any component's CSS Module, so component classes can override them (for example
 // the compact header button over .button).
@@ -8,9 +8,8 @@ import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { siteConfig } from "@/site-config"
 
-// One variable sans for headings, text, and controls. The serif italic used for emphasis is loaded only by the pages
-// that use it (src/lib/accent-font.ts).
-const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
+// One face for headings, text, and controls: Atkinson Hyperlegible, the headline face measured from the approved comp.
+const sans = Atkinson_Hyperlegible({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans", display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.metadataBase),
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#f6f5f0",
+  themeColor: "#fefefe",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

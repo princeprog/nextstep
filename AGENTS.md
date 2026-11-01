@@ -6,9 +6,15 @@ Guidance for coding agents working on the NextStep public website.
 
 Read **Marketing Website Design and SEO** and **Website Content and Sitemap** in the owner's Obsidian vault before
 changing design or copy. When notes disagree, follow newer explicit user decisions, then the Decision Log, Product
-Requirements, and supporting notes. Design and motion follow Emil Kowalski's design-engineering skill, installed for
-this user with `npx skills add emilkowalski/skills@emil-design-eng -g` at
-`C:\Users\Al Prince\.agents\skills\emil-design-eng\SKILL.md` (update it with `npx skills update -g`).
+Requirements, and supporting notes.
+
+Design follows the [impeccable](https://github.com/pbakaus/impeccable) skill, installed for this user at
+`C:\Users\Al Prince\.agents\skills\impeccable\SKILL.md` (update it with `npx impeccable update`). Its project context
+lives in this repo: [PRODUCT.md](PRODUCT.md) (product truth), [DESIGN.md](DESIGN.md) (the visual system), and
+`.impeccable/surfaces/src-app-page-tsx.md` (the home page's direction contract). The home page's first viewport is built
+to the approved comp `.impeccable/mocks/comp-2.png`; keep it matching. No design hook is installed, so after UI edits
+run the detector once: `& 'C:\Users\Al Prince\.agents\skills\impeccable\scripts\impeccable.cmd' detect --json <changed files>`.
+`.impeccable/build/`, `.impeccable/review/`, and the spent decision round are local and git-ignored.
 
 ## Obsidian links
 
@@ -51,6 +57,7 @@ Product requirements, rules, and decisions live in the owner's local Obsidian va
   partial opacity. Hover effects go behind `(hover: hover) and (pointer: fine)` and use transitions, so they can be
   interrupted.
 - Keep content readable at 320 px, keyboard accessible with visible focus, and meeting WCAG 2.2 AA contrast.
+- No eyebrow labels above headings, and no identical entrance animation on every section (impeccable's craft floor).
 
 ## Verification
 

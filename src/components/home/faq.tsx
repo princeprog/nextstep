@@ -74,7 +74,6 @@ export function Faq() {
     <section id="faq" className="section" aria-labelledby="faq-title">
       <div className={"container " + styles.layout}>
         <div className={styles.intro}>
-          <span className="eyebrow">Questions</span>
           <h2 id="faq-title" className="section-title">
             Good to <em className="accent">know</em>
           </h2>

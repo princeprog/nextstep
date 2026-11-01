@@ -1,40 +1,44 @@
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
-  gap: 2rem 4rem;
 }
 
 .intro {
   position: sticky;
-  top: 6rem;
+  top: 6.5rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 1rem;
 }
 
 .list {
-  border-top: 1px solid var(--line-strong);
+  display: grid;
+  gap: 0.75rem;
 }
 
 .item {
-  border-bottom: 1px solid var(--line-strong);
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 14px;
+  background: var(--surface);
+  transition: border-color 200ms ease;
+}
+
+.item[open] {
+  border-color: rgb(23 111 240 / 0.3);
 }
 
 .question {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.3rem 0.25rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  font-weight: 700;
   list-style: none;
-  transition: color 200ms ease;
+  cursor: pointer;
 }
 
 .question::-webkit-details-marker {
@@ -42,58 +46,24 @@
 }
 
 .icon {
-  flex: none;
-  width: 1.3rem;
-  height: 1.3rem;
-  color: var(--evergreen);
-  transition: transform 200ms var(--ease-out);
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--ink-3);
+  transition: transform 200ms var(--ease-out), color 200ms ease;
 }
 
 .item[open] .icon {
+  color: var(--blue);
   transform: rotate(45deg);
 }
 
 .answer {
-  max-width: 40rem;
-  padding: 0 2.5rem 1.4rem 0.25rem;
+  padding: 0 1.25rem 1.2rem;
   color: var(--ink-2);
 }
 
-/* Opening fades the answer in; closing is instant, so the exit is faster than the entrance. */
-.item[open] .answer {
-  animation: answer-in 240ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .question:hover {
-    color: var(--evergreen);
-  }
-}
-
-@keyframes answer-in {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .icon {
-    transition: none;
-  }
-
-  .item[open] .answer {
-    animation: fade 150ms ease;
-  }
-}
-
-@media (max-width: 52rem) {
+@media (max-width: 860px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -102,3 +72,10 @@
     position: static;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: color 200ms ease;
+  }
+}
+

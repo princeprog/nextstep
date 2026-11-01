@@ -1,177 +1,100 @@
 .panel {
-  position: relative;
-  isolation: isolate;
-  overflow: clip;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  gap: 2rem 4rem;
-  padding: clamp(2rem, 6vw, 4.5rem);
-  border-radius: 28px;
-  background: var(--night);
-}
-
-.panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(55% 75% at 78% 55%, rgb(23 97 79 / 0.55), transparent 70%),
-    radial-gradient(rgb(243 241 234 / 0.1) 1px, transparent 1.4px) 0 0 / 22px 22px;
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 16px;
+  background: var(--surface);
 }
 
 .copy {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 1rem;
 }
 
 .title {
-  color: var(--on-night);
-  font-size: clamp(2rem, 4.4vw, 3.2rem);
-  line-height: 1.04;
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  line-height: 1.08;
   letter-spacing: -0.035em;
 }
 
-.title :global(.accent) {
-  color: var(--amber);
-}
-
 .lede {
-  color: var(--on-night-2);
-  font-size: 1.075rem;
+  color: var(--ink-2);
+  font-size: 1.125rem;
 }
 
 .points {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+  display: grid;
+  gap: 0.7rem;
   margin-top: 0.5rem;
   list-style: none;
+  color: var(--ink-2);
 }
 
 .points li {
   display: grid;
-  grid-template-columns: 1.1rem minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0.6rem;
-  color: var(--on-night);
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
 }
 
-.points li::before {
-  content: "";
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: var(--amber);
-  box-shadow: 0 0 0 3px rgb(232 176 74 / 0.2);
+.check {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.2rem;
+  color: var(--blue);
 }
 
-/* An isometric stack (a parallel projection, so no perspective): each layer sits --z steps above the last. */
-.scene {
+/* The architecture, top to bottom: four layers joined by short connectors. */
+.stack {
   display: grid;
-  place-items: center;
-  min-height: 25rem;
-}
-
-.plane {
-  position: relative;
-  width: clamp(10.5rem, 20vw, 14.5rem);
-  aspect-ratio: 1;
-  transform: translateY(18%) rotateX(58deg) rotateZ(-42deg);
-  transform-style: preserve-3d;
+  gap: 1.25rem;
+  list-style: none;
 }
 
 .layer {
-  position: absolute;
-  inset: 0;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.1rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid rgb(243 241 234 / 0.16);
-  border-radius: 22px;
-  color: var(--on-night);
-  box-shadow: 0 40px 50px -30px rgb(0 0 0 / 0.7);
-  translate: 0 0 calc(var(--z) * 3.4rem);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgb(15 23 42 / 0.1);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.layer:first-child {
+  border-color: rgb(23 111 240 / 0.35);
+  background: var(--blue-soft);
+}
+
+.layer + .layer::before {
+  content: "";
+  position: absolute;
+  top: calc(-1.25rem - 1px);
+  left: 1.6rem;
+  width: 1px;
+  height: 1.25rem;
+  background: rgb(15 23 42 / 0.2);
 }
 
 .layer b {
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
-}
-
-.layer small {
-  color: #e2ece7;
-  font-size: 0.8rem;
-}
-
-.l1 {
-  background: linear-gradient(135deg, #12322b, #0d2520);
-}
-
-.l1 small {
-  color: var(--on-night-2);
-}
-
-.l2 {
-  background: linear-gradient(135deg, #17614f, #11483b);
-}
-
-.l3 {
-  background: linear-gradient(135deg, #1a6f5b, #145848);
-}
-
-.l4 {
-  border-color: rgb(13 37 32 / 0.12);
-  background: linear-gradient(135deg, #fff, #e3f0ea);
   color: var(--ink);
 }
 
-.l4 small {
-  color: var(--ink-2);
+.layer span {
+  color: var(--ink-3);
+  font-size: 0.9375rem;
+  text-align: right;
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .scene {
-      view-timeline-name: --hood;
-    }
-
-    .layer {
-      animation: spread var(--ease-out) both;
-      animation-timeline: --hood;
-      animation-range: cover 15% cover 45%;
-    }
-  }
-}
-
-/* With a mouse, hovering the stack opens it a little further. */
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .layer {
-    transition: transform 600ms var(--spring);
-  }
-
-  .scene:hover .layer {
-    transform: translateZ(calc(var(--z) * 1.2rem));
-  }
-}
-
-@keyframes spread {
-  from {
-    translate: 0 0 calc(var(--z) * 0.4rem);
-  }
-}
-
-@media (max-width: 52rem) {
+@media (max-width: 860px) {
   .panel {
     grid-template-columns: minmax(0, 1fr);
   }
-
-  .scene {
-    min-height: 21rem;
-  }
 }
+

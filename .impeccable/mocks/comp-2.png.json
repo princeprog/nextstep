@@ -1,0 +1,9 @@
+{
+  "prompt": "A desktop landing page for NextStep, a personal job-search tracker, rendered edge to edge at 1440 by 900 with crisp, readable text; no browser window, device, or desk around it.\n\nThe category-standard product page at a very high finish, led by the product itself. The visitor is in the middle of a job search and wants to know what to do next. In reading order: a top navigation bar with the NextStep wordmark (a small staircase mark), links Features, How it works, FAQ, and a \"Try the demo\" button at the far right. A centered headline \"Keep your job search moving.\" with the line \"Bring applications, follow-ups, and interviews together, so you always know what to do next.\" and two buttons, \"Create your workspace\" and \"Try the demo\". Below, filling most of the width and running past the bottom edge, a large, sharp window of the NextStep app with a left sidebar (Dashboard, Applications, Tasks, Interviews) and a dashboard titled \"What needs attention\": Overdue \"Send thank-you note, Kestrel Studio, due yesterday\"; Due today \"Prepare a portfolio walkthrough, Harbor Labs\", marked \"Your next step\"; Upcoming interview \"Technical interview, Harbor Labs, Thu 10:00, Asia/Manila\"; and stage counts Saved 4, Applied 6, Interview 2, Offer 1, Rejected 3, Withdrawn 1. Three small callouts point into the window: \"Overdue comes first\", \"Your next step\", \"Shown in its own time zone\". All names are fictional.\n\nVisual law: white ground, slate ink, one confident blue for actions, a clean geometric sans, soft shadows and rounded corners.",
+  "tool": "codex image_gen",
+  "card": "comp-2",
+  "approved": true,
+  "approvedBy": "owner via question panel, 2026-11-01",
+  "approvalNote": "Build with NextStep's real copy, stage names, and menus; replace any invented claims.",
+  "source": "C:\\Users\\Al Prince\\.codex\\generated_images\\01a19354-cb38-7280-acd2-57e54061fb0d\\exec-5405ab3b-806c-4bb9-a9ff-f811ad4dc9b9.png"
+}

@@ -43,3 +43,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# impeccable: local build state, review evidence, and the spent decision round. The config, the surface brief,
+# the approved comp with its approval sidecar, and DESIGN.md with .impeccable/design.json are committed.
+/.impeccable/build/
+/.impeccable/review/
+/.impeccable/mocks/decision/
+/.impeccable/mocks/comp-3.png
+/.impeccable/mocks/comp-3.png.json

@@ -16,7 +16,6 @@ export default function NotFound() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className={styles.page}>
         <div className={"container " + styles.notFound}>
-          <span className="eyebrow">404</span>
           <h1 className={styles.title}>This page took a different path.</h1>
           <p className={styles.lede}>The link may be out of date, or the page may have moved.</p>
           <div className={styles.links}>

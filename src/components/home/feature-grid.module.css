@@ -1,0 +1,290 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  grid-column: span 2;
+  padding: 1.75rem;
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 16px;
+  background: var(--surface);
+  transition: border-color 200ms ease;
+}
+
+.card:nth-child(2) {
+  grid-column: span 2;
+}
+
+.wide {
+  grid-column: span 4;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wide .copy {
+  flex: 1 1 0;
+}
+
+.wide .vignette {
+  flex: 1.15 1 0;
+  margin-top: 0;
+}
+
+.card:nth-child(n + 3) {
+  grid-column: span 2;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.text {
+  color: var(--ink-2);
+  font-size: 1rem;
+}
+
+.vignette {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: auto;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.appRow,
+.task,
+.setting {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgb(15 23 42 / 0.07);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.rowIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--ink-3);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rowText b {
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.rowText span {
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+.pill {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.blue {
+  background: var(--blue-soft);
+  color: var(--blue-ink);
+}
+
+.violet {
+  background: var(--violet-soft);
+  color: var(--violet);
+}
+
+.green {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.slate {
+  background: var(--slate-soft);
+  color: var(--ink-2);
+}
+
+.box {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1.5px solid rgb(15 23 42 / 0.3);
+  border-radius: 5px;
+}
+
+.done .rowText b {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+.doneIcon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--green);
+}
+
+.interview {
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 10px;
+}
+
+.interview b {
+  color: var(--ink);
+}
+
+.times {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  color: var(--violet);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.times svg {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.subtle {
+  color: var(--ink-3);
+}
+
+.notes {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgb(15 23 42 / 0.14);
+  list-style: none;
+  color: var(--ink-2);
+}
+
+.notes li::before {
+  content: "– ";
+  color: var(--ink-3);
+}
+
+.search {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgb(23 111 240 / 0.45);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgb(23 111 240 / 0.12);
+  color: var(--ink);
+}
+
+.search svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--ink-3);
+}
+
+.chips {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgb(15 23 42 / 0.07);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.result b {
+  color: var(--ink);
+}
+
+.result span {
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+}
+
+.setting {
+  grid-template-columns: minmax(0, 1fr) auto;
+  color: var(--ink);
+}
+
+.danger {
+  color: var(--red);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: rgb(15 23 42 / 0.16);
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card,
+  .card:nth-child(2),
+  .card:nth-child(n + 3) {
+    grid-column: span 1;
+  }
+
+  .wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wide,
+  .card,
+  .card:nth-child(2),
+  .card:nth-child(n + 3) {
+    grid-column: auto;
+  }
+
+  .wide {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card {
+    padding: 1.35rem;
+  }
+}
+

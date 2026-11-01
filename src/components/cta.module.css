@@ -5,26 +5,19 @@
   gap: 0.75rem;
 }
 
+/* Without configured app and demo URLs, an honest note replaces the buttons. */
 .note {
   max-width: 34rem;
-  padding: 1rem 1.15rem;
-  border: 1px dashed var(--line-strong);
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: rgb(255 255 255 / 0.6);
+  background: var(--surface);
   color: var(--ink-2);
-  font-size: 0.975rem;
+  font-size: 0.9375rem;
+  text-align: left;
 }
 
 .note strong {
   color: var(--ink);
 }
 
-:global(.on-night) .note {
-  border-color: rgb(243 241 234 / 0.3);
-  background: rgb(243 241 234 / 0.05);
-  color: var(--on-night-2);
-}
-
-:global(.on-night) .note strong {
-  color: var(--on-night);
-}

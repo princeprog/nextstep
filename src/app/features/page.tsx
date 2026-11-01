@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { CtaBand } from "@/components/cta-band"
 import { CalendarIcon, ClockIcon, LockIcon, RecordIcon, SearchIcon, StagesIcon } from "@/components/icons"
 import { SiteHeader } from "@/components/site-header"
-import { accentFont } from "@/lib/accent-font"
 import { pageMetadata } from "@/lib/metadata"
 
 import styles from "./features.module.css"
@@ -98,16 +97,13 @@ export default function FeaturesPage() {
   return (
     <>
       <SiteHeader current="features" />
-      <main id="main" tabIndex={-1} className={accentFont.variable + " " + styles.page}>
+      <main id="main" tabIndex={-1} className={styles.page}>
         <div className="container">
           <div className={styles.intro}>
-            <span className="eyebrow reveal" style={order(0)}>
-              Features
-            </span>
-            <h1 className={styles.title + " reveal"} style={order(1)}>
+            <h1 className={styles.title + " reveal"} style={order(0)}>
               What NextStep does <em className="accent">today</em>
             </h1>
-            <p className={styles.lede + " reveal"} style={order(2)}>
+            <p className={styles.lede + " reveal"} style={order(1)}>
               NextStep is a focused workspace for one person&apos;s job search. Here&apos;s everything it currently does,
               and what it deliberately leaves out for now.
             </p>

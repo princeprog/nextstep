@@ -1,0 +1,190 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.lists {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card,
+.sorted {
+  margin: 0;
+  padding: 1.6rem 1.75rem;
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.cardOn {
+  border-color: rgb(23 111 240 / 0.28);
+}
+
+.listTitle {
+  font-size: 1.125rem;
+  letter-spacing: -0.015em;
+}
+
+.list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  list-style: none;
+  color: var(--ink-2);
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.list svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.2rem;
+}
+
+.muted {
+  color: #8a94a8;
+}
+
+.check {
+  color: var(--blue);
+}
+
+.sortedHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.sortedNote {
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.sortedList {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 1.1rem;
+  list-style: none;
+}
+
+.sortedRow {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgb(15 23 42 / 0.09);
+  border-radius: 12px;
+}
+
+.sortedRow:first-child {
+  border-color: rgb(23 111 240 / 0.35);
+  background: linear-gradient(rgb(232 240 254 / 0.55), rgb(232 240 254 / 0.55)), var(--surface);
+}
+
+.rank {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--slate-soft);
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sortedRow:first-child .rank {
+  background: var(--blue);
+  color: #fff;
+}
+
+.sortedText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sortedText b {
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.sortedText span {
+  color: var(--ink-3);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.toneRed {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.toneViolet {
+  background: var(--violet-soft);
+  color: var(--violet);
+}
+
+.toneBlue {
+  background: var(--blue-soft);
+  color: var(--blue-ink);
+}
+
+.toneSlate {
+  background: var(--slate-soft);
+  color: var(--ink-2);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .card,
+  .sorted {
+    padding: 1.25rem;
+  }
+
+  .sortedRow {
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+  }
+
+  .rank {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .tag {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+

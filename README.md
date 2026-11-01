@@ -18,18 +18,20 @@ app, API, or database at build time or at runtime.
 - Custom components with CSS Modules and a small global stylesheet. **No shadcn/ui, Radix, Base UI, or Tailwind.**
 - Pages inline their CSS into the HTML, split by route (`experimental.inlineCss` and graph CSS chunking in
   `next.config.ts`), so first paint doesn't wait on stylesheet requests
-- Instrument Sans (headings, text, and controls) and Instrument Serif italic (a word of emphasis in headings, loaded only
-  on the pages that use it), self-hosted at build time through `next/font`
-- Design direction "A calmer next step", revamped on 2026-11-01 into a page that reads like a story as you scroll: a
-  dark evergreen hero under a floating pill header; a hand-built, fictional dashboard that tips up to face you, with
-  callouts and a cursor that completes the next step; a desk of scattered scraps that sorts itself into one list;
-  feature cards that act out their feature on hover; an amber dot that climbs the "How it works" staircase; an
-  isometric stack of the real architecture; a FAQ; and a closing panel whose staircase draws itself.
-- Motion follows Emil Kowalski's design-engineering skill and is CSS only: scroll-driven animations
-  (`animation-timeline`) for the stories, interruptible transitions for hovers, only transform, opacity, and clip-path,
-  and a subtle spring easing. Every element's resting style is its finished state, so browsers without scroll-driven
-  animations, and reduced motion, show the complete page. No client-side JavaScript is written for this site, and all
-  content works with JavaScript disabled.
+- Atkinson Hyperlegible (400 and 700) for headings, text, and controls, the headline face measured from the approved
+  comp, self-hosted at build time through `next/font`
+- Design (2026-11-01, built with the [impeccable](https://github.com/pbakaus/impeccable) skill): the category-standard
+  product page, played straight and finished to the level of Linear, Raycast, and Vercel. A centered headline sits over
+  a faithful, fictional picture of the app's dashboard, annotated with three hand-drawn callouts. Then come why it
+  exists, five features with small app fragments, how it works, under the hood, a FAQ, and a navy closing panel.
+  [PRODUCT.md](PRODUCT.md) holds the product truth, [DESIGN.md](DESIGN.md) the visual system, and
+  `.impeccable/surfaces/src-app-page-tsx.md` the home page's direction contract. The first viewport is built to the
+  approved comp `.impeccable/mocks/comp-2.png`.
+- Motion is CSS only: one load moment on the home page (the window lands, the callouts slide in while their arrows draw,
+  and one pulse marks today's row), hover transitions, and a header hairline that fades in as the page scrolls. Only
+  transform, opacity, and clip-path animate, and every element's resting style is its finished state, so reduced motion
+  shows the complete page. No client-side JavaScript is written for this site, and all content works with JavaScript
+  disabled.
 
 ## Pages
 
@@ -106,23 +108,24 @@ to delete). Add `--runs=1` for a quick pass or `--no-build` to measure the curre
 `CHROME_PATH` to use another Chromium browser such as Microsoft Edge, which the script also falls back to on Windows.
 Lab numbers vary a little between runs and machines, so compare runs from the same machine.
 
-Measured on 2026-11-01, after the landing page revamp, with Lighthouse 13.6.0 and Chrome 156 on Windows, median of three
+Measured on 2026-11-01, after the impeccable redesign, with Lighthouse 13.6.0 and Chrome 156 on Windows, median of three
 runs:
 
 | Page | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT | FCP | Speed Index |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` | 100 | 100 | 100 | 100 | 1.1 s | 0 | 68 ms | 1.1 s | 1.1 s |
-| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 54 ms | 0.7 s | 0.7 s |
-| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 61 ms | 0.7 s | 0.7 s |
-| `/terms/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 57 ms | 0.7 s | 0.7 s |
+| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 90 ms | 0.9 s | 1.0 s |
+| `/features/` | 99 | 100 | 100 | 100 | 0.7 s | 0 | 125 ms | 0.7 s | 0.7 s |
+| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 63 ms | 0.7 s | 0.7 s |
+| `/terms/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 69 ms | 0.7 s | 0.7 s |
 
-`/privacy/` and `/terms/` score 66 for SEO only because they are deliberately noindex. Before the 2026-11-01 changes, the same check
+`/privacy/` and `/terms/` score 66 for SEO only because they are deliberately noindex. `/features/` scored 99 in its
+median run on blocking time alone; earlier runs on the same page scored 100, so treat it as lab variance. Before the 2026-11-01 changes, the same check
 found render-blocking stylesheets and 0.9 s LCP on every page, and Best practices 96 from the Windows prefetch 404s.
 Lighthouse still lists unused and legacy JavaScript (about 29 KiB and 14 KiB compressed); both come from the Next.js
 runtime. On `/` and `/features/` it also reports 30 to 90 ms of forced reflow that it can't attribute to any
 script; the site ships no scripts of its own. The home page paints about 0.2 s later than the other pages because its
-HTML is larger (the scroll stories, and the page data Next.js embeds for every App Router page). A backdrop blur on the
-header cost a further 0.3 to 1.8 s of Speed Index in the same check, so the header is solid.
+HTML is larger (the dashboard picture, and the page data Next.js embeds for every App Router page). A backdrop blur on
+the header cost a further 0.3 to 1.8 s of Speed Index in an earlier check, so the header is solid.
 
 ## Continuous integration
 

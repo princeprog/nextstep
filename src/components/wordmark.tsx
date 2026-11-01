@@ -1,21 +1,23 @@
+/** The staircase mark: three blocks climbing diagonally to the upper right, the top one the next step. */
 export function Mark({ size = 28 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" focusable="false" style={{ flexShrink: 0 }}>
-      <rect width="64" height="64" rx="16" fill="#17614F" />
-      <path d="M15 45h12V33h12V21h9" stroke="#F6F5F0" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="48" cy="21" r="5.5" fill="#E8B04A" />
+      <rect x="4" y="38" width="24" height="20" rx="2.5" fill="#5A9BFF" />
+      <rect x="20" y="22" width="24" height="20" rx="2.5" fill="#2F80F6" />
+      <rect x="36" y="6" width="24" height="20" rx="2.5" fill="#176FF0" />
     </svg>
   )
 }
 
-/** The mark and the name. textClassName lets the header hide the name on the narrowest screens. */
-export function Wordmark({ textClassName }: { textClassName?: string }) {
+/** The mark and the name. textClassName lets the header size the name and hide it on the narrowest screens. */
+export function Wordmark({ textClassName, size }: { textClassName?: string; size?: number }) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem" }}>
-      <Mark />
-      <span className={textClassName} style={{ fontSize: "1.25rem", fontWeight: 650, letterSpacing: "-0.03em" }}>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5em" }}>
+      <Mark size={size} />
+      <span className={textClassName} style={{ fontWeight: 700, letterSpacing: "-0.02em" }}>
         NextStep
       </span>
     </span>
   )
 }
+
