@@ -18,10 +18,14 @@ app, API, or database at build time or at runtime.
 - Custom components with CSS Modules and a small global stylesheet. **No shadcn/ui, Radix, Base UI, or Tailwind.**
 - Pages inline their CSS into the HTML, split by route (`experimental.inlineCss` and graph CSS chunking in
   `next.config.ts`), so first paint doesn't wait on stylesheet requests
-- Fraunces (display) and Manrope (body), self-hosted at build time through `next/font`
-- Design direction "A calmer next step": warm paper, deep ink, evergreen, and a small amber highlight; a hand-built
-  product illustration with fictional data. Motion follows Emil Kowalski's design-engineering guidance: one short ease-out
-  entrance, press feedback on buttons, hover only for fine pointers, and a reduced-motion fallback. No client-side
+- Instrument Sans (headings, text, and controls) and Instrument Serif italic (a word of emphasis in headings, loaded only
+  on the pages that use it), self-hosted at build time through `next/font`
+- Design direction "A calmer next step", made more modern on 2026-11-01: a warm canvas, deep evergreen ink, and one
+  amber accent that marks "your next step"; a layered, hand-built product scene with fictional data; a bento grid of
+  features; a "How it works" staircase that echoes the logo; and a dark evergreen closing panel. Motion follows Emil
+  Kowalski's design-engineering skill: a short ease-out entrance, a one-time hero explanation (an application moves to
+  Interview and the next step is marked), press feedback on buttons, hover only for fine pointers, a header hairline
+  that fades in on scroll where supported, and a reduced-motion version that shows the final state. No client-side
   JavaScript is written for this site, and all content works with JavaScript disabled.
 
 ## Pages
@@ -99,19 +103,20 @@ to delete). Add `--runs=1` for a quick pass or `--no-build` to measure the curre
 `CHROME_PATH` to use another Chromium browser such as Microsoft Edge, which the script also falls back to on Windows.
 Lab numbers vary a little between runs and machines, so compare runs from the same machine.
 
-Measured on 2026-11-01 with Lighthouse 13.6.0 and Chrome 156 on Windows, median of three runs:
+Measured on 2026-11-01, after the design refresh, with Lighthouse 13.6.0 and Chrome 156 on Windows, median of three runs:
 
 | Page | Performance | Accessibility | Best practices | SEO | LCP | CLS | TBT | FCP | Speed Index |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 29 ms | 0.9 s | 0.9 s |
-| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 52 ms | 0.7 s | 0.7 s |
-| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 52 ms | 0.7 s | 0.7 s |
-| `/terms/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 57 ms | 0.7 s | 0.7 s |
+| `/` | 100 | 100 | 100 | 100 | 0.9 s | 0 | 65 ms | 0.9 s | 0.9 s |
+| `/features/` | 100 | 100 | 100 | 100 | 0.7 s | 0 | 59 ms | 0.7 s | 0.7 s |
+| `/privacy/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 55 ms | 0.7 s | 0.7 s |
+| `/terms/` | 100 | 100 | 100 | 66 | 0.7 s | 0 | 60 ms | 0.7 s | 0.7 s |
 
 `/privacy/` and `/terms/` score 66 for SEO only because they are deliberately noindex. Before the 2026-11-01 changes, the same check
 found render-blocking stylesheets and 0.9 s LCP on every page, and Best practices 96 from the Windows prefetch 404s.
 Lighthouse still lists unused and legacy JavaScript (about 29 KiB and 14 KiB compressed); both come from the Next.js
-runtime.
+runtime. On `/` and `/features/` it also reports about 45 ms of forced reflow that it can't attribute to any
+script; the site ships no scripts of its own.
 
 ## Continuous integration
 

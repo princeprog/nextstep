@@ -1,211 +1,518 @@
+/* The hero scene: a hand-built, fictional slice of the workspace, decorative and described by its caption. On load it
+   plays one short explanation: the window settles, the interview and next-step cards arrive, Harbor Labs moves from
+   Applied to Interview, and the amber dot pings once. Without animation, or with reduced motion, it shows the final
+   state. Only transform and opacity animate. */
+
 .figure {
   position: relative;
   margin: 0;
-  padding: 1.5rem 0 2.5rem;
 }
 
-.stage {
+.scene {
   position: relative;
-  min-height: 25rem;
+  padding: 4.5rem 0 7rem;
 }
 
-.card {
-  position: absolute;
+.window {
+  position: relative;
+  margin-inline: clamp(0rem, 2vw, 1.75rem);
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--surface);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-lg);
+  animation: settle 700ms var(--ease-out) 80ms both;
 }
 
-.list {
-  inset: 0 3.5rem auto 0;
-  padding: 1.25rem 1.25rem 1rem;
-  transform: rotate(-1.25deg);
-}
-
-.cardTitle {
+.toolbar {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.85rem;
-  color: var(--ink-soft);
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.toolbarTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.toolbarCount {
+  color: var(--ink-3);
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.55rem 0.7rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.stageName {
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.stageCurrent {
+  border-color: transparent;
+  background: var(--mint);
+}
+
+.stageCurrent .stageName {
+  color: var(--evergreen);
+}
+
+.count {
+  display: grid;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem 2.75rem;
 }
 
 .row {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.7rem 0;
-  border-top: 1px solid var(--line);
-  font-size: 0.95rem;
+  padding: 0.6rem;
+  border-radius: var(--radius-sm);
 }
 
-.company {
+.row + .row::after {
+  content: "";
+  position: absolute;
+  inset: 0 0.6rem auto;
+  height: 1px;
+  background: var(--line);
+}
+
+/* The row that just moved stays softly highlighted. */
+.rowMoved::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+  animation: highlight 1300ms var(--ease-out) both;
+}
+
+.monogram {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 10px;
+  background: var(--mint);
+  color: var(--evergreen);
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
+.row:nth-child(2) .monogram {
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+}
+
+.row:nth-child(3) .monogram {
+  background: #e4ecf0;
+  color: #284b5c;
+}
+
+.row:nth-child(4) .monogram {
+  background: #efede6;
+  color: var(--ink-2);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.company,
 .role {
-  color: var(--ink-soft);
-  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.company {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.role {
+  color: var(--ink-3);
+  font-size: 0.8rem;
 }
 
 .chip {
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  background: var(--paper-deep);
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.chipActive {
+.saved {
+  background: #efede6;
+  color: var(--ink-2);
+}
+
+.applied {
+  background: var(--mint);
+  color: var(--evergreen);
+}
+
+.interview {
   background: var(--evergreen);
   color: #fff;
 }
 
-.next {
+/* Two values share one grid cell: the "from" value shows first, then gives way to the "to" value. The "to" value is
+   the resting state, so it needs no animation to appear. */
+.swap {
+  display: grid;
+  justify-items: end;
+}
+
+.swap > *,
+.count > * {
+  grid-area: 1 / 1;
+}
+
+.from {
+  opacity: 0;
+  animation: swap-out 1300ms var(--ease-out) both;
+}
+
+.to {
+  animation: swap-in 1300ms var(--ease-out) both;
+}
+
+.interviewCard,
+.nextCard {
+  position: absolute;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.interviewCard {
+  top: 0;
   right: 0;
+  width: min(15.5rem, 58%);
+  padding: 0.85rem 1rem 0.95rem;
+  box-shadow: var(--shadow-md);
+  animation: float-in 600ms var(--ease-out) 300ms both;
+}
+
+.cardLabel {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.zones {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+/* The line that joins the two time zones. */
+.zones::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: calc(0.275rem - 0.5px);
+  width: 1px;
+  background: var(--line-strong);
+}
+
+.zone {
+  display: grid;
+  grid-template-columns: 0.55rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.zoneDot {
+  position: relative;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--ink-3);
+}
+
+.zoneYou .zoneDot {
+  background: var(--amber);
+}
+
+.zonePlace {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.zonePlace small {
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.zoneTime {
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.zoneYou .zoneTime {
+  color: var(--evergreen);
+}
+
+.nextCard {
   bottom: 0;
-  width: min(21rem, 86%);
-  padding: 1.25rem 1.35rem;
-  border-color: rgb(26 100 85 / 0.35);
-  transform: rotate(1deg);
+  left: 0;
+  width: min(20rem, 80%);
+  padding: 1rem 1.1rem 0.85rem;
+  border-color: rgb(23 97 79 / 0.28);
+  box-shadow: 0 0 0 5px rgb(232 176 74 / 0.14), var(--shadow-lg);
+  animation: float-in 600ms var(--ease-out) 460ms both;
 }
 
 .nextLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--evergreen);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.dot {
+  position: relative;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--amber);
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--amber);
+  opacity: 0;
+  animation: ping 900ms var(--ease-out) 1400ms;
 }
 
 .nextTitle {
   margin-top: 0.45rem;
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 1.45rem;
-  line-height: 1.15;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
 }
 
 .nextMeta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 0.75rem;
-  margin-top: 0.75rem;
-  color: var(--ink-soft);
-  font-size: 0.85rem;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  margin-top: 0.55rem;
+  color: var(--ink-3);
+  font-size: 0.78rem;
 }
 
 .due {
-  padding: 0.15rem 0.55rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 999px;
   background: var(--amber-soft);
-  color: var(--ink);
+  color: var(--amber-ink);
   font-weight: 700;
 }
 
-.check {
-  display: inline-flex;
+.nextFoot {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  font-size: 0.85rem;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
+.complete {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .box {
-  width: 1.05rem;
-  height: 1.05rem;
-  border: 2px solid var(--evergreen);
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid var(--evergreen);
   border-radius: 5px;
 }
 
-.annotation {
-  position: absolute;
-  left: 0.5rem;
-  bottom: 4.5rem;
-  display: flex;
-  align-items: flex-end;
-  gap: 0.25rem;
-}
-
-.tag {
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  background: var(--amber);
-  color: var(--ink);
-  font-size: 0.85rem;
-  font-weight: 800;
-  transform: rotate(-3deg);
-}
-
-.arrow {
-  width: 5.5rem;
-  height: 3rem;
-  color: var(--ink);
-}
-
-.arrow path {
-  stroke-dasharray: 120;
-  stroke-dashoffset: 0;
-  animation: draw 900ms var(--ease-in-out) 500ms both;
-}
-
-@keyframes draw {
-  from {
-    stroke-dashoffset: 120;
-  }
+.forRole {
+  color: var(--ink-3);
+  font-weight: 500;
 }
 
 .caption {
-  margin-top: 1rem;
-  color: var(--ink-soft);
-  font-size: 0.85rem;
+  margin-top: 1.25rem;
+  color: var(--ink-3);
+  font-size: 0.8rem;
   text-align: right;
 }
 
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+}
+
+@keyframes swap-out {
+  0%,
+  77% {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-35%);
+  }
+}
+
+@keyframes swap-in {
+  0%,
+  77% {
+    opacity: 0;
+    transform: translateY(35%);
+  }
+}
+
+@keyframes highlight {
+  0%,
+  77% {
+    opacity: 0;
+  }
+}
+
+@keyframes ping {
+  from {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 40rem) {
-  .stage {
-    min-height: 0;
+  .scene {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    padding: 0;
   }
 
-  .card,
-  .annotation {
+  .window {
+    margin-inline: 0;
+  }
+
+  .rows {
+    padding-bottom: 2.25rem;
+  }
+
+  .interviewCard,
+  .nextCard {
     position: relative;
     inset: auto;
-    transform: none;
+    width: auto;
   }
 
-  .next {
-    width: 100%;
-  }
-
-  .annotation {
+  .nextCard {
     order: 1;
-    left: 0;
-    bottom: 0;
-    align-self: flex-start;
+    margin: -1.75rem 0.75rem 0 1.25rem;
   }
 
-  .arrow {
-    display: none;
+  .interviewCard {
+    order: 2;
+    margin: 0.75rem 1.25rem 0 2.5rem;
   }
 
-  .tag {
-    transform: none;
+  .caption {
+    order: 3;
+    text-align: left;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .arrow path {
+  .window,
+  .interviewCard,
+  .nextCard {
+    animation: fade 200ms ease both;
+  }
+
+  .from,
+  .to,
+  .rowMoved::before,
+  .dot::after {
     animation: none;
   }
 }
-

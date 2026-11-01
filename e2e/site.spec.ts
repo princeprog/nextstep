@@ -57,7 +57,7 @@ test("pages load without console errors or failed requests, including the router
 test("pages pass automated accessibility checks", async ({ page }) => {
   for (const path of ["/", "/features/", "/privacy/", "/terms/", "/no-such-page/"]) {
     await page.goto(path)
-    await page.waitForTimeout(800) // let the short entrance animation finish before measuring contrast
+    await page.waitForTimeout(1800) // let the entrance (the home page's hero explanation runs about 1.5 s) finish before measuring contrast
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze()
     expect(results.violations, path).toEqual([])
   }

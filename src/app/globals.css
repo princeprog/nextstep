@@ -1,24 +1,35 @@
-/* NextStep public site — "A calmer next step". Custom design system; no component library. */
+/* NextStep public site. A custom design system with no component library: a warm canvas, deep evergreen ink, and one
+   amber accent that marks "your next step". Motion follows Emil Kowalski's design-engineering guidance: CSS only,
+   transform and opacity, strong ease-out curves, hover effects only for fine pointers, and a reduced-motion version. */
 
 :root {
-  --paper: #f7f6f0;
-  --paper-deep: #efece1;
-  --surface: #fffefa;
-  --ink: #14342c;
-  --ink-soft: #435d56;
-  --evergreen: #1a6455;
-  --evergreen-deep: #124b40;
-  --amber: #dfaf50;
-  --amber-soft: #f6e7c1;
-  --line: rgb(20 52 44 / 0.14);
-  --line-strong: rgb(20 52 44 / 0.24);
-  --radius-sm: 8px;
-  --radius: 14px;
-  --radius-lg: 22px;
-  --shadow-card: 0 1px 0 rgb(20 52 44 / 0.04), 0 18px 40px -24px rgb(20 52 44 / 0.35);
+  --canvas: #f6f5f0;
+  --surface: #fff;
+  --surface-2: #faf9f5;
+  --ink: #0d2520;
+  --ink-2: #42564f;
+  --ink-3: #5b6d67;
+  --evergreen: #17614f;
+  --evergreen-strong: #0f4c3e;
+  --mint: #e3f0ea;
+  --amber: #e8b04a;
+  --amber-soft: #faedcf;
+  --amber-ink: #7a5306;
+  --danger: #a3321f;
+  --night: #0a1f1a;
+  --on-night: #f3f1ea;
+  --on-night-2: #a7bbb3;
+  --line: rgb(13 37 32 / 0.1);
+  --line-strong: rgb(13 37 32 / 0.2);
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 2px rgb(13 37 32 / 0.06);
+  --shadow-md: 0 1px 2px rgb(13 37 32 / 0.05), 0 6px 12px -4px rgb(13 37 32 / 0.08), 0 18px 36px -18px rgb(13 37 32 / 0.24);
+  --shadow-lg: 0 1px 2px rgb(13 37 32 / 0.05), 0 10px 20px -8px rgb(13 37 32 / 0.1), 0 36px 72px -28px rgb(13 37 32 / 0.34);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --content: 1180px;
+  --content: 1200px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
   color-scheme: light;
 }
@@ -42,9 +53,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--canvas);
   color: var(--ink);
-  font-family: var(--font-body), "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-sans), "Segoe UI", system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -53,14 +64,13 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   text-wrap: balance;
-  font-variation-settings: "SOFT" 50;
 }
 
 p {
@@ -82,6 +92,16 @@ img,
 svg {
   display: block;
   max-width: 100%;
+}
+
+/* A word of emphasis in a heading, set in the serif italic (src/lib/accent-font.ts). */
+.accent {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: 1.08em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--evergreen);
 }
 
 :focus-visible {
@@ -115,11 +135,11 @@ main:focus {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  z-index: 10;
+  z-index: 30;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--canvas);
   font-weight: 600;
   text-decoration: none;
   transform: translateY(-160%);
@@ -129,22 +149,25 @@ main:focus {
   transform: none;
 }
 
+/* Section label: a small amber dot, then the label. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  width: fit-content;
   color: var(--evergreen);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .eyebrow::before {
   content: "";
-  width: 1.5rem;
-  height: 2px;
-  background: currentColor;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--amber);
+  box-shadow: 0 0 0 3px rgb(232 176 74 / 0.25);
 }
 
 /* Buttons: press feedback on :active, hover only for fine pointers, exact transition properties. */
@@ -157,9 +180,10 @@ main:focus {
   padding: 0.75rem 1.35rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-weight: 650;
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.2;
+  letter-spacing: -0.005em;
   text-decoration: none;
   transition: transform 160ms var(--ease-out), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
@@ -171,21 +195,33 @@ main:focus {
 .button-primary {
   background: var(--evergreen);
   color: #fff;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), 0 1px 2px rgb(13 37 32 / 0.18), 0 8px 18px -10px rgb(23 97 79 / 0.8);
 }
 
 .button-secondary {
   border-color: var(--line-strong);
-  background: transparent;
+  background: var(--surface);
   color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.button-arrow {
+  width: 1.1rem;
+  height: 1.1rem;
+  transition: transform 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .button-primary:hover {
-    background: var(--evergreen-deep);
+    background: var(--evergreen-strong);
   }
 
   .button-secondary:hover {
     border-color: var(--ink);
+  }
+
+  .button:hover .button-arrow {
+    transform: translateX(3px);
   }
 }
 
@@ -198,15 +234,47 @@ main:focus {
 
 @media (hover: hover) and (pointer: fine) {
   .text-link:hover {
-    color: var(--evergreen-deep);
+    color: var(--evergreen-strong);
   }
 }
 
-/* Entrance: short, ease-out, opacity + small translate; content is fully present without it. */
+/* Dark panels (the closing call to action): light text, an amber focus ring, and inverted buttons. */
+.on-night {
+  color: var(--on-night);
+}
+
+.on-night :focus-visible {
+  outline-color: var(--amber);
+}
+
+.on-night .button-primary {
+  background: var(--on-night);
+  color: var(--night);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -12px rgb(0 0 0 / 0.7);
+}
+
+.on-night .button-secondary {
+  border-color: rgb(243 241 234 / 0.3);
+  background: rgb(243 241 234 / 0.06);
+  color: var(--on-night);
+  box-shadow: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .on-night .button-primary:hover {
+    background: #fff;
+  }
+
+  .on-night .button-secondary:hover {
+    border-color: var(--on-night);
+  }
+}
+
+/* Entrance: ease-out, opacity plus a small rise. Every element is complete without it. */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
 }
 
@@ -217,7 +285,7 @@ main:focus {
 }
 
 .reveal {
-  animation: rise 560ms var(--ease-out) both;
+  animation: rise 600ms var(--ease-out) both;
   animation-delay: calc(var(--i, 0) * 70ms);
 }
 
@@ -231,8 +299,8 @@ main:focus {
     transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
   }
 
-  .button:active {
+  .button:active,
+  .button:hover .button-arrow {
     transform: none;
   }
 }
-

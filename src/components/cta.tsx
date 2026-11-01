@@ -3,6 +3,7 @@ import Link from "next/link"
 import { siteConfig } from "@/site-config"
 
 import styles from "./cta.module.css"
+import { ArrowRightIcon } from "./icons"
 
 /**
  * Calls to action only link to configured, working URLs. Without them, the site says plainly that the app isn't
@@ -30,6 +31,7 @@ export function Cta({ secondaryFeatures = true }: { secondaryFeatures?: boolean 
       {appUrl ? (
         <a href={appUrl} className="button button-primary">
           Create your workspace
+          <ArrowRightIcon className="button-arrow" />
         </a>
       ) : null}
       {demoUrl ? (
@@ -40,4 +42,3 @@ export function Cta({ secondaryFeatures = true }: { secondaryFeatures?: boolean 
     </div>
   )
 }
-

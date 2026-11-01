@@ -1,10 +1,33 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 5;
-  border-bottom: 1px solid transparent;
-  background: rgb(247 246 240 / 0.88);
-  backdrop-filter: saturate(1.4) blur(10px);
+  z-index: 20;
+  background: rgb(246 245 240 / 0.82);
+  -webkit-backdrop-filter: saturate(1.5) blur(12px);
+  backdrop-filter: saturate(1.5) blur(12px);
+}
+
+/* A hairline under the header. Where scroll-driven animations are supported, it fades in once the page scrolls. */
+.header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--line);
+}
+
+@supports (animation-timeline: scroll()) {
+  .header::after {
+    animation: hairline linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 4rem;
+  }
+}
+
+@keyframes hairline {
+  from {
+    opacity: 0;
+  }
 }
 
 .headerInner {
@@ -24,49 +47,65 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+  gap: clamp(0.15rem, 1vw, 0.5rem);
 }
 
 .navLink {
-  padding: 0.35rem 0.1rem;
-  color: var(--ink-soft);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  color: var(--ink-2);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
-  transition: color 200ms ease;
+  transition: color 200ms ease, background-color 200ms ease;
 }
 
 .navLink[aria-current="page"] {
+  background: rgb(13 37 32 / 0.06);
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--amber);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.45em;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .navLink:hover {
+    background: rgb(13 37 32 / 0.05);
     color: var(--ink);
   }
 }
 
 .navCta {
   min-height: 2.5rem;
+  margin-left: 0.35rem;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 @media (max-width: 30rem) {
   .optional {
     display: none;
   }
+
+  .navLink {
+    padding-inline: 0.55rem;
+  }
+
+  .navCta {
+    margin-left: 0.15rem;
+  }
+}
+
+/* Below 360 px the header shows only the mark; the link keeps its "NextStep home" name. */
+@media (max-width: 22.5rem) {
+  .brandText {
+    display: none;
+  }
 }
 
 .footer {
-  margin-top: clamp(4rem, 9vw, 7rem);
+  margin-top: clamp(3.5rem, 8vw, 6rem);
   border-top: 1px solid var(--line);
   padding-block: 2.5rem 3rem;
-  color: var(--ink-soft);
+  color: var(--ink-2);
   font-size: 0.95rem;
 }
 
@@ -92,7 +131,15 @@
 
 .footerLinks a {
   color: var(--ink);
-  font-weight: 600;
-  text-underline-offset: 0.2em;
+  font-weight: 500;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 200ms ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .footerLinks a:hover {
+    text-decoration-color: currentColor;
+  }
+}

@@ -10,7 +10,7 @@ export function SiteHeader({ current }: { current?: "features" | "privacy" }) {
     <header className={styles.header}>
       <div className={"container " + styles.headerInner}>
         <Link href="/" className={styles.brand} aria-label="NextStep home">
-          <Wordmark />
+          <Wordmark textClassName={styles.brandText} />
         </Link>
         <nav aria-label="Primary" className={styles.nav}>
           <Link href="/features/" className={styles.navLink} aria-current={current === "features" ? "page" : undefined}>

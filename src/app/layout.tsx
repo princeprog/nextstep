@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Fraunces, Manrope } from "next/font/google"
+import { Instrument_Sans } from "next/font/google"
 
 // Global base styles load before any component's CSS Module, so component classes can override them (for example
 // the compact header button over .button).
@@ -8,10 +8,9 @@ import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { siteConfig } from "@/site-config"
 
-// Upright Fraunces only. The italic face is used on the home page alone, so it is loaded (and preloaded) there.
-const display = Fraunces({ subsets: ["latin"], variable: "--font-display", axes: ["opsz", "SOFT"], display: "swap" })
-
-const body = Manrope({ subsets: ["latin"], variable: "--font-body", display: "swap" })
+// One variable sans for headings, text, and controls. The serif italic used for emphasis is loaded only by the pages
+// that use it (src/lib/accent-font.ts).
+const sans = Instrument_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.metadataBase),
@@ -22,12 +21,12 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#f7f6f0",
+  themeColor: "#f6f5f0",
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={display.variable + " " + body.variable}>
+    <html lang="en" className={sans.variable}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
@@ -38,4 +37,3 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   )
 }
-

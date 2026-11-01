@@ -6,8 +6,9 @@ Guidance for coding agents working on the NextStep public website.
 
 Read **Marketing Website Design and SEO** and **Website Content and Sitemap** in the owner's Obsidian vault before
 changing design or copy. When notes disagree, follow newer explicit user decisions, then the Decision Log, Product
-Requirements, and supporting notes. Design and motion follow the Emil design-engineering guidance at
-`C:\Users\Al Prince\Documents\AyahayV2\.agents\skills\emil-design-eng\SKILL.md`.
+Requirements, and supporting notes. Design and motion follow Emil Kowalski's design-engineering skill, installed for
+this user with `npx skills add emilkowalski/skills@emil-design-eng -g` at
+`C:\Users\Al Prince\.agents\skills\emil-design-eng\SKILL.md` (update it with `npx skills update -g`).
 
 ## Obsidian links
 

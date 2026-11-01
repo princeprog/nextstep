@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 
-import { Cta } from "@/components/cta"
+import { CtaBand } from "@/components/cta-band"
+import { CalendarIcon, ClockIcon, LockIcon, RecordIcon, SearchIcon, StagesIcon } from "@/components/icons"
 import { SiteHeader } from "@/components/site-header"
+import { accentFont } from "@/lib/accent-font"
 import { pageMetadata } from "@/lib/metadata"
 
-import styles from "../prose.module.css"
+import styles from "./features.module.css"
 
 export const metadata: Metadata = pageMetadata({
   title: "Features",
@@ -13,8 +15,13 @@ export const metadata: Metadata = pageMetadata({
   path: "/features/",
 })
 
+/** Position in the intro's staggered entrance (the global .reveal class). */
+const order = (i: number) => ({ "--i": i }) as React.CSSProperties
+
 const FEATURES = [
   {
+    id: "applications",
+    Icon: RecordIcon,
     title: "Applications",
     text: "One record per opportunity, so the details are there when you need them.",
     points: [
@@ -25,6 +32,8 @@ const FEATURES = [
     ],
   },
   {
+    id: "pipeline",
+    Icon: StagesIcon,
     title: "A six-stage pipeline",
     text: "Saved, Applied, Interview, Offer, Rejected, and Withdrawn.",
     points: [
@@ -35,6 +44,8 @@ const FEATURES = [
     ],
   },
   {
+    id: "tasks",
+    Icon: ClockIcon,
     title: "Tasks and follow-ups",
     text: "Due dates that mean what you expect, wherever you are.",
     points: [
@@ -45,6 +56,8 @@ const FEATURES = [
     ],
   },
   {
+    id: "interviews",
+    Icon: CalendarIcon,
     title: "Interviews",
     text: "Interview details stay with the application they belong to.",
     points: [
@@ -55,6 +68,8 @@ const FEATURES = [
     ],
   },
   {
+    id: "search",
+    Icon: SearchIcon,
     title: "Search, filters, and sorting",
     text: "Find an older record quickly as your list grows.",
     points: [
@@ -65,12 +80,15 @@ const FEATURES = [
     ],
   },
   {
+    id: "workspace",
+    Icon: LockIcon,
     title: "A private workspace",
     text: "Your job search belongs to your account alone.",
     points: [
       "Sign in with email and password; sessions use secure, HttpOnly cookies",
+      "Confirm your email address when you sign up, and reset a forgotten password by email",
       "Every record is checked against its owner on the server",
-      "Delete your account and its data permanently from settings",
+      "Download all your data as a JSON file, or delete your account and its data permanently",
       "A temporary demo with fictional data, kept separate for each visitor and removed after 24 hours",
     ],
   },
@@ -80,23 +98,32 @@ export default function FeaturesPage() {
   return (
     <>
       <SiteHeader current="features" />
-      <main id="main" tabIndex={-1} className={styles.page}>
+      <main id="main" tabIndex={-1} className={accentFont.variable + " " + styles.page}>
         <div className="container">
           <div className={styles.intro}>
-            <span className="eyebrow">Features</span>
-            <h1 className={styles.title}>What NextStep does today</h1>
-            <p className={styles.lede}>
+            <span className="eyebrow reveal" style={order(0)}>
+              Features
+            </span>
+            <h1 className={styles.title + " reveal"} style={order(1)}>
+              What NextStep does <em className="accent">today</em>
+            </h1>
+            <p className={styles.lede + " reveal"} style={order(2)}>
               NextStep is a focused workspace for one person&apos;s job search. Here&apos;s everything it currently does,
               and what it deliberately leaves out for now.
             </p>
           </div>
           <div className={styles.grid}>
-            {FEATURES.map((feature) => (
-              <section key={feature.title} className={styles.feature} aria-labelledby={"feature-" + feature.title}>
-                <h2 id={"feature-" + feature.title} className={styles.featureTitle}>{feature.title}</h2>
-                <p>{feature.text}</p>
-                <ul>
-                  {feature.points.map((point) => (
+            {FEATURES.map(({ id, Icon, title, text, points }) => (
+              <section key={id} className={styles.card} aria-labelledby={"feature-" + id}>
+                <span className={styles.icon}>
+                  <Icon />
+                </span>
+                <h2 id={"feature-" + id} className={styles.cardTitle}>
+                  {title}
+                </h2>
+                <p className={styles.cardText}>{text}</p>
+                <ul className={styles.points}>
+                  {points.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
@@ -104,24 +131,29 @@ export default function FeaturesPage() {
             ))}
           </div>
           <section className={styles.later} aria-labelledby="later-title">
-            <h2 id="later-title">Not included yet</h2>
-            <p>These aren&apos;t available. They may come later, only if they turn out to be useful.</p>
+            <div className={styles.laterHead}>
+              <h2 id="later-title">Not included yet</h2>
+              <p>These aren&apos;t available. They may come later, only if they turn out to be useful.</p>
+            </div>
             <ul>
               <li>Email or push reminders</li>
               <li>Importing jobs from job boards</li>
               <li>AI résumé or cover-letter help</li>
               <li>Calendar sync</li>
               <li>File attachments</li>
-              <li>Password reset and email verification</li>
             </ul>
           </section>
-          <section className={styles.cta} aria-labelledby="features-cta">
-            <h2 id="features-cta">Ready for a calmer search?</h2>
-            <Cta secondaryFeatures={false} />
-          </section>
         </div>
+        <CtaBand
+          id="features-cta"
+          title={
+            <>
+              Ready for a <em className="accent">calmer</em> search?
+            </>
+          }
+          secondaryFeatures={false}
+        />
       </main>
     </>
   )
 }
-
