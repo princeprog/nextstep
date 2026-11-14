@@ -33,7 +33,7 @@ jobs:
           package-manager-cache: false
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
       - name: Fail on high or critical advisories
         run: pnpm audit --audit-level high
@@ -50,7 +50,7 @@ jobs:
 
       # Fails on any known vulnerability that osv-scanner.toml does not list as a triaged, dated exception.
       - name: Scan the lockfile
-        uses: google/osv-scanner-action/osv-scanner-action@b1d267aea5211fa648d9d442fa64b90dbdcbdd36 # v2.7.0
+        uses: google/osv-scanner-action/osv-scanner-action@32d3cd482bdadfb38b186c0ad1b031902d55d932 # v2.7.1
         with:
           scan-args: |-
             --config=osv-scanner.toml
